@@ -80,6 +80,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "erp_greenwich.users",
+    "erp_greenwich.auth"
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -131,6 +132,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "oauth2_provider.middleware.OAuth2TokenMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -138,7 +140,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "oauth2_provider.middleware.OAuth2TokenMiddleware",
 ]
 
 # STATIC
@@ -308,6 +309,13 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # Oauth2
 # ------------------------------------------------------------------------------
 OAUTH2_PROVIDER = {
-    # this is the list of available scopes
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+    "ACCESS_TOKEN_GENERATOR": "erp_greenwich.auth.jwt_generator.jwt_token_generator",
+    "REFRESH_TOKEN_GENERATOR": "oauthlib.oauth2.rfc6749.tokens.random_token_generator",
+    "AUTHORIZATION_CODE_EXPIRE_SECONDS": 3600,
+    "SCOPES": {
+        'read': 'Read scope',
+        'write': 'Write scope',
+        'groups': 'Access to your groups'
+    }
 }
+OAUTH2_PROVIDER_APPLICATION_MODEL = 'oauth.GreenwichApplication'
