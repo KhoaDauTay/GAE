@@ -7,7 +7,7 @@ class IsAuthenticatedOrClientCredentialPermission(BasePermission):
             return False
         grant_type = request.auth.application.get_authorization_grant_type_display()
         if request.user is None:
-            if grant_type == 'Client credentials':
+            if grant_type == "Client credentials":
                 request.user = request.auth.application.user
                 return True
             else:

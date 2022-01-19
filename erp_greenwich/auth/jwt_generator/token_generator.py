@@ -1,15 +1,31 @@
-from uuid import uuid4
+import datetime
 from base64 import b85encode
+from uuid import uuid4
+
 import jwt  # pip install pyjwt
 from django.conf import settings
 from django.utils.timezone import now
+from oauthlib.common import to_unicode
 
 
-def jwt_token_generator(
-    request=None,
-    key=settings.SECRET_KEY,
-    algorithm='HS256'
-):
+def rsa_token_generator(request):
+    now = datetime.datetime.utcnow()
+
+    claims = {
+        "sub": request.user.id,
+        "scope": request.scope,
+        "exp": now + datetime.timedelta(seconds=request.expires_in),
+    }
+
+    claims.update(request.claims)
+    private_pem = settings.PRIVATE_KEY
+    token = jwt.encode(claims, private_pem, "RS256")
+    token = to_unicode(token, "UTF-8")
+
+    return token
+
+
+def jwt_token_generator(request=None, key=settings.SECRET_KEY, algorithm="HS256"):
     """Generate a JWT access token with jti and exp claims
     jti - The "jti" (JWT ID) claim provides a unique identifier for the JWT.)
     exp - The "exp" (expiration time) claim identifies the expiration time

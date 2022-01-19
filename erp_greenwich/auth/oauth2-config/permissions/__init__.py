@@ -1,1 +1,0 @@
-from .client_credentials import IsAuthenticatedOrClientCredentialPermission
