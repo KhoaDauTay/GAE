@@ -8,7 +8,7 @@ from django.utils.timezone import now
 def jwt_token_generator(
     request=None,
     key=settings.SECRET_KEY,
-    algorithm='HS256',
+    algorithm='HS256'
 ):
     """Generate a JWT access token with jti and exp claims
     jti - The "jti" (JWT ID) claim provides a unique identifier for the JWT.)
