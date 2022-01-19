@@ -1,7 +1,6 @@
 """
 Base settings to build other settings files upon.
 """
-import os
 from pathlib import Path
 
 import environ
@@ -307,6 +306,11 @@ REST_FRAMEWORK = {
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
+# Casbin
+# ------------------------------------------------------------------------------
+# CASBIN_MODEL = os.path.join(APPS_DIR, 'auth', 'role_rbac.conf')
+# CASBIN_ADAPTER = "casbin.persist.adapters.FileAdapter"
+# CASBIN_ADAPTER_ARGS = os.path.join(APPS_DIR, 'auth', 'role_rbac.csv')
 # Oauth2
 # ------------------------------------------------------------------------------
 OAUTH2_PROVIDER = {
@@ -395,4 +399,3 @@ wnoyjZPwlxQxJaOqBecR7zZrHYRHK0MjV9PHJB3X+m0R7JWpxhjjhdbuiANV3xNg
 gI7Qy8bSZgHl4DE5OdxheWsCAwEAAQ==
 -----END PUBLIC KEY-----
 """
-
