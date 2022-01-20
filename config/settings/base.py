@@ -244,7 +244,7 @@ LOGGING = {
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
-                      "%(process)d %(thread)d %(message)s"
+            "%(process)d %(thread)d %(message)s"
         }
     },
     "handlers": {
@@ -314,25 +314,25 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # Oauth2
 # ------------------------------------------------------------------------------
 OAUTH2_PROVIDER = {
-    "ACCESS_TOKEN_GENERATOR": "erp_greenwich.auth.jwt_generator.rsa_token_generator",
+    "ACCESS_TOKEN_GENERATOR": "erp_greenwich.auth.jwt_generator.token_generator.rsa_token_generator",
     "ACCESS_TOKEN_EXPIRE_SECONDS": 36000,
-    'APPLICATION_MODEL': 'custom_oauth.Application',
-    'ACCESS_TOKEN_MODEL': 'custom_oauth.AccessToken',
+    "APPLICATION_MODEL": "custom_oauth.Application",
+    "ACCESS_TOKEN_MODEL": "custom_oauth.AccessToken",
     "REFRESH_TOKEN_GENERATOR": "oauthlib.oauth2.rfc6749.tokens.random_token_generator",
     "AUTHORIZATION_CODE_EXPIRE_SECONDS": 36000,
     "SCOPES": {
-        'read': 'Read scope',
-        'write': 'Write scope',
-        'groups': 'Access to your groups'
-    }
+        "read": "Read scope",
+        "write": "Write scope",
+        "groups": "Access to your groups",
+    },
 }
-# Custom Model
-OAUTH2_PROVIDER_ACCESS_TOKEN_MODEL = 'custom_oauth.AccessToken'
+# # Custom Model
+OAUTH2_PROVIDER_ACCESS_TOKEN_MODEL = "custom_oauth.AccessToken"
 OAUTH2_PROVIDER_REFRESH_TOKEN_MODEL = "custom_oauth.RefreshToken"
-OAUTH2_PROVIDER_APPLICATION_MODEL = 'custom_oauth.Application'
+OAUTH2_PROVIDER_APPLICATION_MODEL = "custom_oauth.Application"
 # Original Model
 OAUTH2_PROVIDER_ID_TOKEN_MODEL = "oauth2_provider.IDToken"
-OAUTH2_PROVIDER_GRANT_MODEL = 'oauth2_provider.Grant'
+OAUTH2_PROVIDER_GRANT_MODEL = "oauth2_provider.Grant"
 PRIVATE_KEY = """-----BEGIN RSA PRIVATE KEY-----
 MIIJKgIBAAKCAgEA1MtRnSG0FT5BvJWjrieHesissdmUVsxal/p8s+2AiV+TtxI2
 R6PGnFMMOsz1s3/Xs5cMdYml1voKowHNF0+xhMO63vh+VfQOOI4TLAQMAMJgacft

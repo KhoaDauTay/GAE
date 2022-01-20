@@ -1,6 +1,9 @@
 from django.db import models
-from oauth2_provider.models import AbstractApplication, AbstractAccessToken, AbstractRefreshToken, AbstractIDToken, \
-    AbstractGrant
+from oauth2_provider.models import (
+    AbstractAccessToken,
+    AbstractApplication,
+    AbstractRefreshToken,
+)
 
 
 class Application(AbstractApplication):
@@ -24,5 +27,6 @@ class RefreshToken(AbstractRefreshToken):
     """
     extend the AccessToken model with the external introspection server response
     """
+
     class Meta(AbstractRefreshToken.Meta):
         swappable = "OAUTH2_PROVIDER_REFRESH_TOKEN_MODEL"

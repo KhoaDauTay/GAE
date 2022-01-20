@@ -8,7 +8,10 @@ from oauth2_provider.settings import oauth2_settings
 
 
 class Migration(migrations.Migration):
-
+    initial = True
+    run_before = [
+        ('oauth2_provider', '0001_initial'),
+    ]
     dependencies = [
         migrations.swappable_dependency(settings.OAUTH2_PROVIDER_ACCESS_TOKEN_MODEL),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
@@ -27,7 +30,7 @@ class Migration(migrations.Migration):
                 ('authorization_grant_type', models.CharField(max_length=32, choices=[('authorization-code', 'Authorization code'), ('implicit', 'Implicit'), ('password', 'Resource owner password-based'), ('client-credentials', 'Client credentials')])),
                 ('client_secret', models.CharField(default=oauth2_provider.generators.generate_client_secret, max_length=255, db_index=True, blank=True)),
                 ('name', models.CharField(max_length=255, blank=True)),
-                ('user', models.ForeignKey(related_name="oauth2_provider_application", blank=True, to=settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)),
+                ('user', models.ForeignKey(related_name="custom_oauth_application", blank=True, to=settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)),
                 ('skip_authorization', models.BooleanField(default=False)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
@@ -45,7 +48,7 @@ class Migration(migrations.Migration):
                 ('expires', models.DateTimeField()),
                 ('scope', models.TextField(blank=True)),
                 ('application', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=oauth2_settings.APPLICATION_MODEL)),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='oauth2_provider_accesstoken', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='custom_oauth_accesstoken', to=settings.AUTH_USER_MODEL)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
                 # Circular reference. Can't add it here.
@@ -57,31 +60,13 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Grant',
-            fields=[
-                ('id', models.BigAutoField(serialize=False, primary_key=True)),
-                ('code', models.CharField(unique=True, max_length=255)),
-                ('expires', models.DateTimeField()),
-                ('redirect_uri', models.CharField(max_length=255)),
-                ('scope', models.TextField(blank=True)),
-                ('application', models.ForeignKey(to=oauth2_settings.APPLICATION_MODEL, on_delete=models.CASCADE)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='oauth2_provider_grant', to=settings.AUTH_USER_MODEL)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateTimeField(auto_now=True)),
-            ],
-            options={
-                'abstract': False,
-                'swappable': 'OAUTH2_PROVIDER_GRANT_MODEL',
-            },
-        ),
-        migrations.CreateModel(
             name='RefreshToken',
             fields=[
                 ('id', models.BigAutoField(serialize=False, primary_key=True)),
                 ('token', models.CharField(max_length=255)),
                 ('access_token', models.OneToOneField(blank=True, null=True, related_name="refresh_token", to=oauth2_settings.ACCESS_TOKEN_MODEL, on_delete=models.SET_NULL)),
                 ('application', models.ForeignKey(to=oauth2_settings.APPLICATION_MODEL, on_delete=models.CASCADE)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='oauth2_provider_refreshtoken', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='custom_oauth_refreshtoken', to=settings.AUTH_USER_MODEL)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
                 ('revoked', models.DateTimeField(null=True)),
