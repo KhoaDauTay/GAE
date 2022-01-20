@@ -13,7 +13,7 @@ urlpatterns = [
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
+    path("oauth/", include("oauth2_provider.urls", namespace="oauth2_provider")),
     # User management
     path("users/", include("erp_greenwich.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),

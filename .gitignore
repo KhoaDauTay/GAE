@@ -327,6 +327,7 @@ tags
 
 ### Project template
 erp_greenwich/media/
+key/*
 
 .pytest_cache/
 .ipython/
