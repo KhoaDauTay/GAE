@@ -12,6 +12,7 @@ def rsa_token_generator(request):
     now = datetime.datetime.utcnow()
 
     claims = {
+        "iss": "GAE",
         "sub": request.user.id,
         "scope": request.scope,
         "exp": now + datetime.timedelta(seconds=request.expires_in),
