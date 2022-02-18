@@ -1,0 +1,122 @@
+_format_version: "2.1"
+_transform: true
+
+
+# Config Consumers and JWT for consumers
+
+consumers:
+- username: gmm
+
+jwt_secrets:
+- consumer: gmm
+  algorithm: RS256
+  key: GAE
+  rsa_public_key: "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA1MtRnSG0FT5BvJWjrieH\nesissdmUVsxal/p8s+2AiV+TtxI2R6PGnFMMOsz1s3/Xs5cMdYml1voKowHNF0+x\nhMO63vh+VfQOOI4TLAQMAMJgacftWEuuj7PbZfER6hu4xtKhJyMxISKrhEkMhkNb\nr652clLP+elWjiHNnk5J6rzyj7WZmjeQIZafRtWkPhlOxlHJV/8iaIZwZ/igvAhh\nr8Hls0b6E5Y4BA1oCMhelSffUj/aGAQwAagUkRhY6SMJ00oMfk4WAXLLcAtPHMeG\nvRxMHawBddSr4ozNdqtVjNrWfK18r4o8sAc709rtdGdwLUlBgQQTovFc985A4rQ3\nOdVz0O0umT0WygSyOfnQPIea/ixuekYUl4O5uQie8WErh1STEYPZk0I0Rt5/fwYX\n6R5uHIIhU5M3GQXQoy8gnWzDhyeNnkxPT04a6QhdXMOPA+8ORcKtXONpgZMLZBAP\nK8egK6LxfRxLJ5vtnGbzgnZj7J5MiizsZDn3b80R8pltynEkKiPmALuVbuz6iEie\nON8TDCSI5R0VLr1AJXfjDJD7bS6WaIaB31HHfUtEZImD88VzgddqNBLcwy28IUBF\nwnoyjZPwlxQxJaOqBecR7zZrHYRHK0MjV9PHJB3X+m0R7JWpxhjjhdbuiANV3xNg\ngI7Qy8bSZgHl4DE5OdxheWsCAwEAAQ==\n-----END PUBLIC KEY-----\n%"
+plugins:
+- name: jwt
+  enabled: yes
+  service: default-service
+  config:
+    secret_is_base64: false
+    header_names: ["Authorization"]
+    key_claim_name: iss
+    run_on_preflight: true
+    claims_to_verify:
+      - exp
+
+# Config for Upstreams
+
+upstreams:
+- name: default-upstream
+  hash_on: none
+  algorithm: round-robin
+  tags:
+  hash_fallback: none
+  hash_on_cookie_path: "/"
+  healthchecks:
+    active:
+      unhealthy:
+        http_statuses:
+        - 429
+        - 404
+        - 500
+        - 501
+        - 502
+        - 503
+        - 504
+        - 505
+        tcp_failures: 0
+        timeouts: 0
+        http_failures: 0
+        interval: 0
+      type: https
+      http_path: "/"
+      timeout: 1
+      healthy:
+        successes: 0
+        interval: 0
+        http_statuses:
+        - 200
+        - 302
+      https_verify_certificate: true
+      concurrency: 10
+    passive:
+      unhealthy:
+        http_failures: 0
+        http_statuses:
+        - 429
+        - 500
+        - 503
+        tcp_failures: 0
+        timeouts: 0
+      healthy:
+        http_statuses:
+        - 200
+        - 201
+        - 202
+        - 203
+        - 204
+        - 205
+        - 206
+        - 207
+        - 208
+        - 226
+        - 300
+        - 301
+        - 302
+        - 303
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        successes: 0
+      type: https
+  slots: 200
+  targets:
+    - target: reqres.in:443
+      weight: 200
+
+# Config Services và Routes
+
+services:
+- name: default-service
+  host: default-upstream
+  url : http://192.168.1.8:8080
+  connect_timeout: 60000
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+    - name: default-route
+      methods:
+      - GET
+      paths:
+        - /api/users
+      protocols:
+      - http
+      - https
+      regex_priority: 0
+      strip_path: false
+      preserve_host: false
