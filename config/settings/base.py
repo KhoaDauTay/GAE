@@ -302,6 +302,10 @@ REST_FRAMEWORK = {
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
+    "DATETIME_INPUT_FORMATS": ["%Y-%m-%d %H:%M:%S"],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
@@ -399,3 +403,12 @@ wnoyjZPwlxQxJaOqBecR7zZrHYRHK0MjV9PHJB3X+m0R7JWpxhjjhdbuiANV3xNg
 gI7Qy8bSZgHl4DE5OdxheWsCAwEAAQ==
 -----END PUBLIC KEY-----
 """
+
+# Format Date and time in model
+DATE_INPUT_FORMATS = ("%d-%m-%Y",)  # '21-03-2014'
+TIME_INPUT_FORMATS = (
+    "%H:%M:%S",  # '17:59:59'
+    "%H:%M",  # '17:59'
+)
+
+EMAIL_BLACKLIST_DOMAIN = ["admin@gmail.com"]

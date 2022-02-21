@@ -9,7 +9,7 @@ if settings.DEBUG:
 else:
     router = SimpleRouter()
 
-router.register("users", UserViewSet)
+router.register("users", UserViewSet, basename="users")
 router.register("applications", ApplicationViewSet, basename="applications")
 
 app_name = "api"
