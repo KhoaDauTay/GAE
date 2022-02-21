@@ -2,3 +2,5 @@ createdb erp_greenwich_2 -U postgres --password khoa0305
 openssl genrsa -out jwt-key 4096
 openssl rsa -in jwt-key -pubout > jwt-key.pub
 python3 manage.py createsuperuser --noinput
+$ docker-compose -f local.yml run --rm django python manage.py migrate
+$ docker-compose -f local.yml run --rm django python manage.py createsuperuser

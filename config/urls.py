@@ -13,7 +13,6 @@ urlpatterns = [
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    path("oauth/", include("oauth2_provider.urls", namespace="oauth2_provider")),
     # User management
     path("users/", include("erp_greenwich.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
@@ -27,8 +26,8 @@ if settings.DEBUG:
 urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
-    # DRF auth token
-    # path("auth-token/", obtain_auth_token),
+    # Oauth token
+    path("oauth/", include("oauth2_provider.urls", namespace="oauth2_provider")),
 ]
 
 if settings.DEBUG:
