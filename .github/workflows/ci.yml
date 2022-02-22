@@ -50,5 +50,13 @@ jobs:
       - name: Run Django Tests
         run:  docker-compose -f local.yml run django pytest
 
+      - name: Setup inso
+        uses: Kong/setup-inso@v1
+      - name: Lint
+        run: inso lint spec "Designer Demo" --ci
+      - name: Run test suites
+        run: inso run test "Designer Demo" --env UnitTest --ci
+      - name: Generate declarative config
+        run: inso generate config "Designer Demo" --type declarative --ci
       - name: Tear down the Stack
         run:  docker-compose -f local.yml down

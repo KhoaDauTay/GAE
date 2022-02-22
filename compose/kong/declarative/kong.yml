@@ -123,7 +123,7 @@ upstreams:
       type: https
   slots: 200
   targets:
-    - target: 192.168.1.96:8080 # IP: port or domain:port
+    - target: 172.17.0.1:8080 # IP: port or domain:port
       weight: 100
 #    - target: reqres.in:443
 #      weight: 200
