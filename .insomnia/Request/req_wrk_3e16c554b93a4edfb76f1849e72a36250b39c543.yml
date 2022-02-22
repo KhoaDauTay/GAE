@@ -1,0 +1,31 @@
+_id: req_wrk_3e16c554b93a4edfb76f1849e72a36250b39c543
+type: Request
+parentId: wrk_3e16c554b93a4edfb76f1849e72a3625
+modified: 1645534075049
+created: 1645533214173
+url: "{{ base_url }}/users/"
+name: /users/
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "email": "user@example.com",
+      "password": "string",
+      "confirm_password": "string",
+      "name": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1645533270461
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

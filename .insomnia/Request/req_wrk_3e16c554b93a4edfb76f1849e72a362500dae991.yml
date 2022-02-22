@@ -1,0 +1,29 @@
+_id: req_wrk_3e16c554b93a4edfb76f1849e72a362500dae991
+type: Request
+parentId: wrk_3e16c554b93a4edfb76f1849e72a3625
+modified: 1645534075012
+created: 1645533214144
+url: "{{ base_url }}/users/{{ username }}/"
+name: /users/{username}/
+description: ""
+method: PATCH
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "name": "string",
+      "email": "user@example.com"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1645533270261
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

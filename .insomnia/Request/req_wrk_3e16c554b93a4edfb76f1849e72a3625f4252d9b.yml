@@ -1,0 +1,37 @@
+_id: req_wrk_3e16c554b93a4edfb76f1849e72a3625f4252d9b
+type: Request
+parentId: wrk_3e16c554b93a4edfb76f1849e72a3625
+modified: 1645534075087
+created: 1645533214207
+url: "{{ base_url }}/applications/"
+name: /applications/
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "client_id": "string",
+      "redirect_uris": "string",
+      "client_type": "string",
+      "authorization_grant_type": "string",
+      "client_secret": "string",
+      "name": "string",
+      "skip_authorization": true,
+      "algorithm": "string",
+      "scopes": "string",
+      "user": 0
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1645533214162
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
