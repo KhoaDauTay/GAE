@@ -49,9 +49,10 @@ jobs:
 
       - name: Run Django Tests
         run:  docker-compose -f local.yml run django pytest
-
-      - name: Setup inso
-        uses: Kong/setup-inso@v1
+      - name: Setup Inso
+        uses: kong/setup-inso@v1
+        with:
+          inso-version: 2.4.1
       - name: Run test suites
         run: inso run test "Test Token" --env "OpenAPI env"--ci
       - name: Generate declarative config
