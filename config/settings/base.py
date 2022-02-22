@@ -74,6 +74,7 @@ THIRD_PARTY_APPS = [
     # "allauth.socialaccount",
     "django_celery_beat",
     "rest_framework",
+    "drf_yasg",
     # "rest_framework.authtoken",
     "corsheaders",
 ]

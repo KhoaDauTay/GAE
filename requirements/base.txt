@@ -24,3 +24,7 @@ django-cors-headers==3.10.1 # https://github.com/adamchainz/django-cors-headers
 #Oauth
 django-oauth-toolkit==1.6.1
 jwcrypto==1.0
+drf-yasg==1.20.0
+inflection==0.5.1
+ruamel.yaml==0.17.21
+ruamel.yaml.clib==0.2.6

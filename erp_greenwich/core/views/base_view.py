@@ -58,7 +58,7 @@ class BaseViewSet(ModelViewSet):
         Get models queryset base on Manager
         :return: QuerySet[Model]
         """
-        return self.model_manager.all().order_by("-created_at")
+        return self.model_manager.all().order_by("-id" "")
 
     def external_validate(self, **kwargs) -> bool:
         """

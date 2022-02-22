@@ -5,6 +5,25 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="GAE EndUser API",
+        default_version="v1",
+        description="Greenwich Application Ecosystem end user api documentation",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="cuonglieu3256@gmail.com"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+    patterns=[
+        path("api/", include("config.api_router")),
+        path("oauth/", include("oauth2_provider.urls", namespace="oauth2_provider")),
+    ],
+)
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -17,6 +36,16 @@ urlpatterns = [
     path("users/", include("erp_greenwich.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path(
+        "api/swagger.json",
+        schema_view.without_ui(cache_timeout=0),
+        name="enduser_schema-json",
+    ),
+    path(
+        "api/swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="enduser-schema-swagger-ui",
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
