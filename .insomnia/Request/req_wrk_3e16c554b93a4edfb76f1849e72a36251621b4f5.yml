@@ -1,7 +1,7 @@
 _id: req_wrk_3e16c554b93a4edfb76f1849e72a36251621b4f5
 type: Request
 parentId: wrk_3e16c554b93a4edfb76f1849e72a3625
-modified: 1645534123378
+modified: 1645538697203
 created: 1645533214184
 url: "{{ base_url }}/applications/{{ id }}/"
 name: /applications/{id}/
@@ -26,7 +26,6 @@ parameters: []
 headers:
   - name: Content-Type
     value: application/json
-    id: pair_88862546779f49f180cac6e435b7484d
 authentication: {}
 metaSortKey: -1645533314301
 isPrivate: false

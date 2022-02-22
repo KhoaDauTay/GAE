@@ -1,7 +1,7 @@
 _id: env_env_d06941b7d6010f5b32dc50594c459a17a2561ba7_sub
 type: Environment
 parentId: env_d06941b7d6010f5b32dc50594c459a17a2561ba7
-modified: 1645534075101
+modified: 1645538732802
 created: 1645532922727
 name: OpenAPI env
 data:
@@ -13,8 +13,6 @@ dataPropertyOrder:
     - scheme
     - base_path
     - host
-    - httpUsername
-    - httpPassword
 color: null
 isPrivate: false
 metaSortKey: 1645532922727
