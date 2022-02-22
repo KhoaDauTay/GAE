@@ -1,10 +1,10 @@
 _id: ut_2bee9712eee24e4da562ea63c68f912e
 type: UnitTest
 parentId: uts_199baa2dc45b4c9bb1d00bd4710df76d
-modified: 1645539068585
+modified: 1645539226610
 created: 1645522540287
-requestId: req_wrk_3e16c554b93a4edfb76f1849e72a36250bbe1502
-name: Get token and request admin users
+requestId: req_wrk_3e16c554b93a4edfb76f1849e72a362528bed5d3
+name: Get list users
 code: |-
   const response1 = await insomnia.send();
   expect(response1.status).to.equal(200);
