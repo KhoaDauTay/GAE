@@ -17,7 +17,6 @@ class TokenPermissionWithAction(BasePermission):
         if hasattr(token, "scope"):  # OAuth 2
 
             scope = getattr(view, "get_scopes_with_actions")
-            print(scope)
             if token.is_valid([scope]):
                 return True
             return False
