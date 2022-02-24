@@ -51,6 +51,4 @@ class Migration(migrations.Migration):
         ('users', '0004_alter_user_role'),
     ]
 
-    operations = [
-        migrations.RunPython(add_user),
-    ]
+    operations = [migrations.RunPython(add_user, migrations.RunPython.noop)]

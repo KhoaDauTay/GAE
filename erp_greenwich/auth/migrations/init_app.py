@@ -22,6 +22,4 @@ class Migration(migrations.Migration):
         ('custom_oauth', '0003_merge_0001_initial_0002_auto_20220119_2353'),
     ]
 
-    operations = [
-        migrations.RunPython(add_app),
-    ]
+    operations = [migrations.RunPython(add_app, migrations.RunPython.noop)]

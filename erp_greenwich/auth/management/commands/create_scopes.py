@@ -10,7 +10,7 @@ class Command(BaseCommand):
     help = "Create permissions with url pattern"
 
     def handle(self, *args, **kwargs):
-        data = dict()
+        data = {}
         for scope in get_api_actions():
             """
             Create description of scope
