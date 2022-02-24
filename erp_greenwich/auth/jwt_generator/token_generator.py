@@ -17,8 +17,10 @@ def rsa_token_generator(request):
         "scope": request.scope,
         "exp": now + datetime.timedelta(seconds=request.expires_in),
     }
-
-    claims.update(request.claims)
+    try:
+        claims.update(request.claims)
+    except Exception as e:
+        print(e)
     private_pem = settings.PRIVATE_KEY
     token = jwt.encode(claims, private_pem, "RS256")
     token = to_unicode(token, "UTF-8")

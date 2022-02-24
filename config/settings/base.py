@@ -299,14 +299,10 @@ ACCOUNT_ADAPTER = "erp_greenwich.users.adapters.AccountAdapter"
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
     "DATETIME_INPUT_FORMATS": ["%Y-%m-%d %H:%M:%S"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
-    "PAGE_SIZE": 10,
+    "PAGE_SIZE": 5,
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
@@ -320,16 +316,12 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # ------------------------------------------------------------------------------
 OAUTH2_PROVIDER = {
     "ACCESS_TOKEN_GENERATOR": "erp_greenwich.auth.jwt_generator.token_generator.rsa_token_generator",
-    "ACCESS_TOKEN_EXPIRE_SECONDS": 36000,
+    "ACCESS_TOKEN_EXPIRE_SECONDS": 360000,
     "APPLICATION_MODEL": "custom_oauth.Application",
     "ACCESS_TOKEN_MODEL": "custom_oauth.AccessToken",
     "REFRESH_TOKEN_GENERATOR": "oauthlib.oauth2.rfc6749.tokens.random_token_generator",
-    "AUTHORIZATION_CODE_EXPIRE_SECONDS": 36000,
-    "SCOPES": {
-        "read": "Read scope",
-        "write": "Write scope",
-        "groups": "Access to your groups",
-    },
+    "AUTHORIZATION_CODE_EXPIRE_SECONDS": 360000,
+    "SCOPES_BACKEND_CLASS": "erp_greenwich.auth.oauth2_config.scopes.ScopesBackend",
 }
 # # Custom Model
 OAUTH2_PROVIDER_ACCESS_TOKEN_MODEL = "custom_oauth.AccessToken"
@@ -413,3 +405,4 @@ TIME_INPUT_FORMATS = (
 )
 
 EMAIL_BLACKLIST_DOMAIN = ["admin@gmail.com"]
+SCOPES_JSON_PATH = str(APPS_DIR / "auth/oauth2_config/scopes.json")

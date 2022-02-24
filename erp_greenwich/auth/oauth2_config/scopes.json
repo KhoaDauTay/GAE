@@ -1,0 +1,13 @@
+{
+    "applications:create": "Create object of Applications",
+    "applications:destroy": "Destroy object of Applications",
+    "applications:list": "List object of Applications",
+    "applications:retrieve": "Retrieve object of Applications",
+    "applications:update": "Update object of Applications",
+    "users:create": "Create object of Users",
+    "users:destroy": "Destroy object of Users",
+    "users:list": "List object of Users",
+    "users:me": "Me object of Users",
+    "users:retrieve": "Retrieve object of Users",
+    "users:update": "Update object of Users"
+}
