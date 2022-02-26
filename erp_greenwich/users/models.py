@@ -1,10 +1,18 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField
+from django.db.models import CASCADE, CharField, ForeignKey, TextField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from erp_greenwich.core.models.time_stamp import DateTimeModel
-from erp_greenwich.utils.enum import Role
+
+
+class Role(DateTimeModel):
+    name = CharField(_("Name of Role"), max_length=255, unique=True)
+    description = TextField(blank=True, default="")
+
+    def count_role(self):
+        roles: list = self.objects.all()
+        return len(roles)
 
 
 class User(AbstractUser, DateTimeModel):
@@ -14,11 +22,11 @@ class User(AbstractUser, DateTimeModel):
     name = CharField(_("Name of User"), blank=True, max_length=255)
     first_name = None  # type: ignore
     last_name = None  # type: ignore
-    role = CharField(
-        max_length=20,
-        choices=[(tag.name, tag.value) for tag in Role],  # Choices is a list of Tuple,
+    role = ForeignKey(
+        Role,
         blank=True,
         null=True,
+        on_delete=CASCADE,
     )
 
     def get_absolute_url(self):

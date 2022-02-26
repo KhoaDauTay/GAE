@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 class UsersConfig(AppConfig):
     name = "erp_greenwich.users"
     verbose_name = _("Users")
+    label = "users"
 
     def ready(self):
         try:
