@@ -14,7 +14,8 @@ def rsa_token_generator(request):
     claims = {
         "iss": "GAE",
         "sub": request.user.id,
-        "scope": request.scope,
+        "role": request.user.role,
+        "username": request.user.username,
         "exp": now + datetime.timedelta(seconds=request.expires_in),
     }
     try:
