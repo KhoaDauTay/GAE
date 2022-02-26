@@ -1,14 +1,25 @@
 import logging
 
+import casbin
+from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from oauth2_provider.contrib.rest_framework import OAuth2Authentication
 from rest_framework.permissions import BasePermission, IsAuthenticated
 
 from erp_greenwich.auth.models import AccessToken
+from erp_greenwich.utils.import_class import import_class
 
 log = logging.getLogger("oauth2_provider")
 
 
 class TokenPermissionWithAction(BasePermission):
+    def __init__(self):
+        # Initialize the Casbin enforcer, executed only on once.
+        class_adapter = import_class(settings.CASBIN_ADAPTER)
+        adapter = class_adapter()
+        e = casbin.Enforcer(settings.CASBIN_MODEL, adapter)
+        self.enforcer = e
+
     def has_permission(self, request, view):
         token: AccessToken = request.auth
         if not token:
@@ -17,7 +28,7 @@ class TokenPermissionWithAction(BasePermission):
         if hasattr(token, "scope"):  # OAuth 2
 
             scope = getattr(view, "get_scopes_with_actions")
-            if token.is_valid([scope]):
+            if token.is_valid([scope]) and self.casbin_authorize(request, scope):
                 return True
             return False
 
@@ -26,6 +37,28 @@ class TokenPermissionWithAction(BasePermission):
             "`oauth2_provider.rest_framework.OAuth2Authentication` authentication "
             "class to be used."
         )
+
+    def casbin_authorize(self, request, scope):
+        # Check the permission for each request.
+        if not self.check_permission(request, scope):
+            # Not authorized, return HTTP 403 error.
+            self.require_permission()
+        # Permission passed, go to next module.
+        return True
+
+    def check_permission(self, request, scope):
+        # Customize it based on your authentication method.
+        role = request.user.role
+        # RBAC
+        sub = role.lower()
+        obj = scope
+        act = request.method
+        return self.enforcer.enforce(sub, obj, act)
+
+    def require_permission(
+        self,
+    ):
+        raise PermissionDenied("Your role can not access resource")
 
 
 class IsAuthenticatedOrTokenPermissionWithAction(BasePermission):

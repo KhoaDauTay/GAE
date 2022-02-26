@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+import os
 from pathlib import Path
 
 import environ
@@ -77,6 +78,7 @@ THIRD_PARTY_APPS = [
     "drf_yasg",
     # "rest_framework.authtoken",
     "corsheaders",
+    "casbin_adapter.apps.CasbinAdapterConfig",
 ]
 
 LOCAL_APPS = [
@@ -309,9 +311,10 @@ REST_FRAMEWORK = {
 CORS_URLS_REGEX = r"^/api/.*$"
 # Casbin
 # ------------------------------------------------------------------------------
-# CASBIN_MODEL = os.path.join(APPS_DIR, 'auth', 'role_rbac.conf')
-# CASBIN_ADAPTER = "casbin.persist.adapters.FileAdapter"
-# CASBIN_ADAPTER_ARGS = os.path.join(APPS_DIR, 'auth', 'role_rbac.csv')
+CASBIN_MODEL = os.path.join(APPS_DIR, "auth", "casbin", "role_rbac.conf")
+CASBIN_ADAPTER = "casbin_adapter.adapter.Adapter"
+CASBIN_ADAPTER_ARGS = os.path.join(APPS_DIR, "auth", "casbin", "role_rbac.csv")
+CASBIN_LOG_ENABLED = True
 # Oauth2
 # ------------------------------------------------------------------------------
 OAUTH2_PROVIDER = {

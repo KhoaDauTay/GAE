@@ -9,44 +9,44 @@ from erp_greenwich.utils import Role
 def add_user(apps, schema_editor):
     User = apps.get_model(*settings.AUTH_USER_MODEL.split('.'))
     try:
+        admin_user, created = User.objects.get_or_create(
+            username='admin',
+            email='admin@gmail.com',
+            password=make_password('khoa0305'),
+            name='admin',
+            role=Role.ADMIN.name,
+        )
         User.objects.bulk_create([
-            # User(username='admin',
-            #      email='khoadautay@gmail.com',
-            #      password=make_password('khoa0305'),
-            #      name='admin',
-            #      role=Role.ADMIN,
-            #      is_superuser=True,
-            # ),
             User(username='student',
                  email='student@gmail.com',
                  password=make_password('khoa0305'),
                  name='student',
                  role=Role.STUDENT.name,
-            ),
+                 ),
             User(username='staff',
                  email='staff@gmail.com',
                  password=make_password('khoa0305'),
                  name='staff',
                  role=Role.STAFF.name,
-            ),
+                 ),
             User(username='security',
                  email='security@gmail.com',
                  password=make_password('khoa0305'),
                  name='security',
-                 role=Role.ADMIN.name,
-            ),
+                 role=Role.SECURITY.name,
+                 ),
             User(username='manager',
                  email='manager@gmail.com',
                  password=make_password('khoa0305'),
                  name='manager',
                  role=Role.MANAGER.name,
-            ),
+                 ),
         ])
     except Exception as e:
         pass
 
-class Migration(migrations.Migration):
 
+class Migration(migrations.Migration):
     dependencies = [
         ('users', '0004_alter_user_role'),
     ]
