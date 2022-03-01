@@ -1,0 +1,106 @@
+{% load static i18n %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}ERP-GREENWICH{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#000000"/>
+  <link
+    rel="apple-touch-icon"
+    sizes="76x76"
+    href="{% static 'images/img/apple-icon.png' %}"
+  />
+  <link
+    rel="stylesheet"
+    href="{% static 'fonts/@fortawesome/fontawesome-free/css/all.min.css' %}"
+  />
+  <link rel="stylesheet" href="{% static 'css/tailwind.css' %}"/>
+
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+
+  {% block css %}
+    <!-- Latest compiled and minified Bootstrap CSS -->
+
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    <!-- This file stores project-specific CSS -->
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+  {% endblock %}
+  <!-- Le javascript
+  ================================================== -->
+  {# Placed at the top of the document so pages load faster with defer #}
+  {% block javascript %}
+    <!-- Bootstrap JS -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"
+            integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Your stuff: Third-party javascript libraries go here -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <!-- place project specific Javascript in this file -->
+    <script defer src="{% static 'js/project.js' %}"></script>
+  {% endblock javascript %}
+
+</head>
+
+<body class="text-blueGray-700 antialiased">
+
+
+{% include 'pages/index/navbar.html' %}
+{% if messages %}
+  {% for message in messages %}
+    <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-{{ message.tags }}-500">
+      <span class="text-xl inline-block mr-5 align-middle">
+        <i class="fas fa-bell"></i>
+      </span>
+      <span class="inline-block align-middle mr-8">
+        <b class="capitalize">{{ message.tags }}!</b> {{ message }}
+      </span>
+      <button
+        class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+        <span>×</span>
+      </button>
+    </div>
+  {% endfor %}
+{% endif %}
+
+{% block content %}
+{% endblock content %}
+
+
+{% block modal %}{% endblock modal %}
+{% include 'pages/index/footer.html' %}
+{% block inline_javascript %}
+
+
+  <script>
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+      document.getElementById(collapseID).classList.toggle("hidden");
+      document.getElementById(collapseID).classList.toggle("block");
+    }
+
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      Popper.createPopper(element, document.getElementById(dropdownID), {
+        placement: "bottom-start",
+      });
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+  </script>
+{% endblock inline_javascript %}
+</body>
+</html>
