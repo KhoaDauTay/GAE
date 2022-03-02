@@ -7,7 +7,7 @@
     "users:create": "Create object of Users",
     "users:destroy": "Destroy object of Users",
     "users:list": "List object of Users",
-    "users:me": "Me object of Users",
+    "users:me": "See my information",
     "users:retrieve": "Retrieve object of Users",
     "users:update": "Update object of Users"
 }

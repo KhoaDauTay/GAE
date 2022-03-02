@@ -1,5 +1,12 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CASCADE, CharField, ForeignKey, TextField
+from django.db.models import (
+    CASCADE,
+    CharField,
+    ForeignKey,
+    ImageField,
+    OneToOneField,
+    TextField,
+)
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -10,9 +17,8 @@ class Role(DateTimeModel):
     name = CharField(_("Name of Role"), max_length=255, unique=True)
     description = TextField(blank=True, default="")
 
-    def count_role(self):
-        roles: list = self.objects.all()
-        return len(roles)
+    def __str__(self):
+        return self.name
 
 
 class User(AbstractUser, DateTimeModel):
@@ -20,8 +26,9 @@ class User(AbstractUser, DateTimeModel):
 
     #: First and last name do not cover name patterns around the globe
     name = CharField(_("Name of User"), blank=True, max_length=255)
-    first_name = None  # type: ignore
-    last_name = None  # type: ignore
+    first_name = CharField(max_length=50, default="", blank=True)
+    last_name = CharField(max_length=50, default="", blank=True)
+    avatar = ImageField(null=True, blank=True)
     role = ForeignKey(
         Role,
         blank=True,
@@ -37,3 +44,15 @@ class User(AbstractUser, DateTimeModel):
 
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+
+class Client(DateTimeModel):
+    user = OneToOneField(User, on_delete=CASCADE, primary_key=True)
+    address = CharField(max_length=100, default="", blank=True)
+    city = CharField(max_length=50, default="", blank=True)
+    country = CharField(max_length=50, default="", blank=True)
+    postal_code = CharField(max_length=50, default="", blank=True)
+    about_me = TextField(default="", blank=True)
+
+    def __str__(self):
+        return self.user.username

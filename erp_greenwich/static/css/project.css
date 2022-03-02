@@ -11,3 +11,28 @@
   background-color: #f2dede;
   border-color: #eed3d7;
 }
+.max-h-540-px {
+  max-height: 700px;
+}
+.max-w-400-px {
+  max-width: 400px;
+}
+.mx-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.list-decimal{
+  list-style-type: decimal;
+}
+::marker {
+  font-size: 1.0em;
+  padding-right: 10px;
+}
+.list-inside{
+ list-style-position: inside;
+}
+.list-custom {
+ padding: 20px;
+  margin: 10px;
+  }

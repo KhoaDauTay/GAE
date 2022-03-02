@@ -6,10 +6,11 @@
   {% include 'pages/index/navbar.html' %}
 
 
-  <div>
+  <section
+  class="header relative pt-16 items-center flex h-screen max-h-860-px"
+>
     {% block inner %}{% endblock %}
-
-  </div>
+  </section>
   {% include 'pages/index/footer.html' %}
 
 {% endblock %}

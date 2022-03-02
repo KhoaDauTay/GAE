@@ -9,6 +9,8 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
+from erp_greenwich.users.views import HomeView, index
+
 schema_view = get_schema_view(
     openapi.Info(
         title="GAE EndUser API",
@@ -26,7 +28,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", index, name="index"),
+    path("home/", HomeView.as_view(), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),

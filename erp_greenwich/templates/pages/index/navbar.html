@@ -73,14 +73,24 @@
                       {% endif %}
           </div>
           <li class="flex items-center">
-            <button
-              class="text-white bg-pink-500 active:bg-pink-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-              type="button"
-            >
-              <a id="log-in-link" class="nav-link" href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i>
-                Logout</a>
 
+            <form method="post" action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+              {% endif %}
+              <button type="submit" class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onclick="toggleModal('small-modal-id')">
+              Logout
             </button>
+            </form>
+{#            <button#}
+{#              class="text-white bg-pink-500 active:bg-pink-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"#}
+{#              type="button"#}
+{#            >#}
+{#              <a id="log-in-link" class="nav-link" href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i>#}
+{#                Logout</a>#}
+{##}
+{#            </button>#}
           </li>
         {% endif %}
       </ul>

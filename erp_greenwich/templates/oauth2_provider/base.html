@@ -1,4 +1,5 @@
-{% load static i18n %}<!DOCTYPE html>
+{% load static i18n %}
+<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -14,11 +15,11 @@
   />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{% static 'css/tailwind.css' %}"/>
+
   <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
   {% block css %}
     <!-- Latest compiled and minified Bootstrap CSS -->
-
     <!-- Your stuff: Third-party CSS libraries go here -->
     <!-- This file stores project-specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
@@ -28,9 +29,6 @@
   {# Placed at the top of the document so pages load faster with defer #}
   {% block javascript %}
     <!-- Bootstrap JS -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"
-            integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Your stuff: Third-party javascript libraries go here -->
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
     <!-- place project specific Javascript in this file -->
@@ -40,32 +38,15 @@
 </head>
 
 <body class="text-blueGray-700 antialiased">
-
-
-{% if messages %}
-  {% for message in messages %}
-    <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-{{ message.tags }}-500">
-      <span class="text-xl inline-block mr-5 align-middle">
-        <i class="fas fa-bell"></i>
-      </span>
-      <span class="inline-block align-middle mr-8">
-        <b class="capitalize">{{ message.tags }}!</b> {{ message }}
-      </span>
-      <button
-        class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
-        <span>×</span>
-      </button>
-    </div>
-  {% endfor %}
-{% endif %}
+  {% include 'pages/index/navbar.html' %}
+  <section
+  class="header relative pt-16 items-center flex h-screen max-h-540-px max-w-400-px mx-auto"
+>
 {% block content %}
   <p>Use this document as a way to quick start any new project.</p>
 {% endblock content %}
-
-
-{% block modal %}{% endblock modal %}
-{% block inline_javascript %}
-{% endblock inline_javascript %}
+  </section>
+  {% include 'pages/index/footer.html' %}
 <script>
   (function () {
     if (document.getElementById("get-current-year")) {
@@ -84,7 +65,7 @@
   /* Function for dropdowns */
   function openDropdown(event, dropdownID) {
     let element = event.target;
-    while (element.nodeName !== "A") {
+    while (element.nodeName !== "A") {	list-style-type: decimal;
       element = element.parentNode;
     }
     Popper.createPopper(element, document.getElementById(dropdownID), {
