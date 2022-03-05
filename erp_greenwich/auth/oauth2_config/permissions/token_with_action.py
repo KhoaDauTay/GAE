@@ -48,7 +48,7 @@ class TokenPermissionWithAction(BasePermission):
 
     def check_permission(self, request, scope):
         # Customize it based on your authentication method.
-        role = request.user.role
+        role = request.user.role.name
         # RBAC
         sub = role.lower()
         obj = scope

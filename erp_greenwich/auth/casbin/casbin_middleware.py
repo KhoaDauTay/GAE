@@ -31,7 +31,7 @@ class CasbinMiddleware:
     def check_permission(self, request):
         # Customize it based on your authentication method.
         if request.user.is_authenticated:
-            role = request.user.role
+            role = request.user.role.name
         else:
             role = "anonymous"
         sub = role.lower()

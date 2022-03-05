@@ -7,14 +7,16 @@ from django.conf import settings
 from django.utils.timezone import now
 from oauthlib.common import to_unicode
 
+from erp_greenwich.users.models import Role
+
 
 def rsa_token_generator(request):
     now = datetime.datetime.utcnow()
-
+    role: Role = request.user.role.name
     claims = {
         "iss": "GAE",
         "sub": request.user.id,
-        "role": request.user.role,
+        "role": role,
         "username": request.user.username,
         "exp": now + datetime.timedelta(seconds=request.expires_in),
     }
