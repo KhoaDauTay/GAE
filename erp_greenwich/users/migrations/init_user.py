@@ -3,7 +3,6 @@ from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.db import migrations
 
-from erp_greenwich.utils import Role
 
 
 def add_user(apps, schema_editor):
@@ -14,32 +13,28 @@ def add_user(apps, schema_editor):
             email='admin@gmail.com',
             password=make_password('khoa0305'),
             name='admin',
-            role=Role.ADMIN.name,
+            is_superuser=True,
         )
         User.objects.bulk_create([
             User(username='student',
                  email='student@gmail.com',
                  password=make_password('khoa0305'),
                  name='student',
-                 role=Role.STUDENT.name,
                  ),
             User(username='staff',
                  email='staff@gmail.com',
                  password=make_password('khoa0305'),
                  name='staff',
-                 role=Role.STAFF.name,
                  ),
             User(username='security',
                  email='security@gmail.com',
                  password=make_password('khoa0305'),
                  name='security',
-                 role=Role.SECURITY.name,
                  ),
             User(username='manager',
                  email='manager@gmail.com',
                  password=make_password('khoa0305'),
                  name='manager',
-                 role=Role.MANAGER.name,
                  ),
         ])
     except Exception as e:
@@ -48,7 +43,7 @@ def add_user(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('users', '0004_alter_user_role'),
+        ('users', 'init_role'),
     ]
 
     operations = [migrations.RunPython(add_user, migrations.RunPython.noop)]

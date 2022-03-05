@@ -1,0 +1,79 @@
+{% load static i18n %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}ERP-GREENWICH{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#000000"/>
+  <link
+    rel="apple-touch-icon"
+    sizes="76x76"
+    href="{% static 'images/img/apple-icon.png' %}"
+  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'css/tailwind.css' %}"/>
+
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+
+  {% block css %}
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    <!-- This file stores project-specific CSS -->
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+  {% endblock %}
+  <!-- Le javascript
+  ================================================== -->
+  {# Placed at the top of the document so pages load faster with defer #}
+  {% block javascript %}
+    <!-- Bootstrap JS -->
+    <!-- Your stuff: Third-party javascript libraries go here -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <!-- place project specific Javascript in this file -->
+    <script defer src="{% static 'js/project.js' %}"></script>
+  {% endblock javascript %}
+
+</head>
+
+<body class="text-blueGray-700 antialiased">
+  {% include 'pages/index/navbar.html' %}
+  <section
+  class="header relative pt-16 items-center flex h-screen max-h-540-px max-w-400-px mx-auto"
+>
+{% block content %}
+  <p>Use this document as a way to quick start any new project.</p>
+{% endblock content %}
+  </section>
+  {% include 'pages/index/footer.html' %}
+<script>
+  (function () {
+    if (document.getElementById("get-current-year")) {
+      document.getElementById(
+        "get-current-year"
+      ).innerHTML = new Date().getFullYear();
+    }
+  })();
+
+  /* Function for opning navbar on mobile */
+  function toggleNavbar(collapseID) {
+    document.getElementById(collapseID).classList.toggle("hidden");
+    document.getElementById(collapseID).classList.toggle("block");
+  }
+
+  /* Function for dropdowns */
+  function openDropdown(event, dropdownID) {
+    let element = event.target;
+    while (element.nodeName !== "A") {	list-style-type: decimal;
+      element = element.parentNode;
+    }
+    Popper.createPopper(element, document.getElementById(dropdownID), {
+      placement: "bottom-start",
+    });
+    document.getElementById(dropdownID).classList.toggle("hidden");
+    document.getElementById(dropdownID).classList.toggle("block");
+  }
+</script>
+</body>
+</html>

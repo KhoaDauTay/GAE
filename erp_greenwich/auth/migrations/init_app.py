@@ -3,21 +3,22 @@ from django.db import migrations
 from oauth2_provider.models import AbstractApplication
 
 
-
 def add_app(apps, schema_editor):
-    Application = apps.get_model('custom_oauth','Application')
+    Application = apps.get_model('custom_oauth', 'Application')
     try:
         Application.objects.create(
-            redirect_uris='http://gmm.com/',
+            redirect_uris='https://gmm-gw.systems/',
             client_type=AbstractApplication.CLIENT_CONFIDENTIAL,
             authorization_grant_type=AbstractApplication.GRANT_AUTHORIZATION_CODE,
-            name='GMM'
+            name='GMM',
+            scopes="applications:create applications:destroy applications:list applications:retrieve "
+                   "applications:update users:create users:destroy users:list users:me users:retrieve users:update "
         )
     except Exception as e:
         pass
 
-class Migration(migrations.Migration):
 
+class Migration(migrations.Migration):
     dependencies = [
         ('custom_oauth', '0003_merge_0001_initial_0002_auto_20220119_2353'),
     ]

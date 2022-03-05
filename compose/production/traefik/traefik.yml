@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`khoaht-dev.com`) || Host(`www.khoaht-dev.com`)"
+      rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       entryPoints:
         - web-secure
       middlewares:
@@ -39,10 +39,10 @@ http:
       service: django
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+        certResolver: letsencrypto
 
     flower-secure-router:
-      rule: "Host(`khoaht-dev.com`)"
+      rule: "Host(`gae-gw.systems`)"
       entryPoints:
         - flower
       service: flower
