@@ -73,7 +73,7 @@ services:
 
   kong:
     container_name: kong
-    image: kong:latest
+    image: docker.io/bitnami/kong:2
     restart: always
     privileged: true
     environment:
@@ -102,7 +102,6 @@ services:
       - "8444:8444"
       - "8000:8000"
       - "8443:8443"
-    command: chmod -R 777 /usr/local/kong
 
 
   portainer:
