@@ -123,7 +123,7 @@ upstreams:
       type: https
   slots: 200
   targets:
-    - target: 103.82.26.214:443 # IP: port or domain:port
+    - target: 103.82.26.214:8443 # IP: port or domain:port
       weight: 100
 
 
@@ -135,7 +135,7 @@ services:
   port: 5000
 #  url : http://0.0.0.0:8080
   connect_timeout: 60000
-  protocol: https
+  protocol: http
   read_timeout: 60000
   retries: 5
   write_timeout: 60000
@@ -150,7 +150,7 @@ services:
       paths:
         - /api
       protocols:
-      - https
+      - http
       regex_priority: 0
       strip_path: false
       preserve_host: false
