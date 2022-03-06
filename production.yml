@@ -97,7 +97,6 @@ services:
       - ./compose/kong/declarative:/usr/local/kong/declarative
       - ./compose/kong/config/nginx.conf:/usr/local/kong/nginx.conf
       - ./compose/kong/config/nginx-kong.conf:/usr/local/kong/nginx-kong.conf
-      - ./compose/kong/config/kong.conf:/opt/bitnami/kong/conf/kong.conf
     ports:
       - "8001:8001"
       - "8444:8444"
