@@ -73,9 +73,7 @@ services:
 
   kong:
     container_name: kong
-    build:
-      context: .
-      dockerfile: ./compose/kong/Dockerfile
+    image: kong:latest
     restart: always
     privileged: true
     environment:
