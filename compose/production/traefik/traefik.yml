@@ -17,7 +17,7 @@ entryPoints:
 
   kong-secure:
     # https
-    address: ":8443"
+    address: ":8000"
 
   flower:
     address: ":5555"
@@ -31,13 +31,6 @@ certificatesResolvers:
       # https://docs.traefik.io/master/https/acme/#httpchallenge
       httpChallenge:
         entryPoint: web
-
-  kong-letsencrypt:
-    acme:
-      email: "khoadautay@gmail.com"
-      storage: /etc/traefik/acme/acme.json
-      httpChallenge:
-        entryPoint: kong-secure
 
 http:
   routers:
@@ -89,7 +82,7 @@ http:
     kong-service:
       loadBalancer:
         servers:
-          - url: https://kong:8443
+          - url: http://kong:8000
 
 providers:
   # https://docs.traefik.io/master/providers/file/
