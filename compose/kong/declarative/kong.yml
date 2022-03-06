@@ -123,10 +123,8 @@ upstreams:
       type: https
   slots: 200
   targets:
-    - target: 172.17.0.1:8080 # IP: port or domain:port
+    - target: 103.82.26.214:443 # IP: port or domain:port
       weight: 100
-#    - target: reqres.in:443
-#      weight: 200
 
 
 # Config Services và Routes
@@ -134,10 +132,10 @@ upstreams:
 services:
 - name: api-service
   host: default-upstream
-  port: 8080
+  port: 5000
 #  url : http://0.0.0.0:8080
   connect_timeout: 60000
-  protocol: http
+  protocol: https
   read_timeout: 60000
   retries: 5
   write_timeout: 60000
@@ -145,35 +143,13 @@ services:
     - name: user-route
       methods:
       - GET
-      paths:
-        - /api
-      protocols:
-      - http
-      - https
-      regex_priority: 0
-      strip_path: false
-      preserve_host: false
-- name: django-service
-  host: default-upstream
-  port: 8080
-#  url : http://0.0.0.0:8080
-  connect_timeout: 60000
-  protocol: http
-  read_timeout: 60000
-  retries: 5
-  write_timeout: 60000
-  routes:
-    - name: defalt-route
-      methods:
-      - GET
       - POST
       - PUT
       - DELETE
       - PATCH
       paths:
-        - /
+        - /api
       protocols:
-      - http
       - https
       regex_priority: 0
       strip_path: false
