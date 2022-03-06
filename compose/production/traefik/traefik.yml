@@ -30,8 +30,14 @@ certificatesResolvers:
       storage: /etc/traefik/acme/acme.json
       # https://docs.traefik.io/master/https/acme/#httpchallenge
       httpChallenge:
-        entryPoint: web, kong-secure
+        entryPoint: web
 
+  kong-letsencrypt:
+    acme:
+      email: "khoadautay@gmail.com"
+      storage: /etc/traefik/acme/acme.json
+      httpChallenge:
+        entryPoint: kong-secure
 
 http:
   routers:
@@ -44,7 +50,7 @@ http:
       service: django
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypto
+        certResolver: letsencrypt
 
     flower-secure-router:
       rule: "Host(`gae-gw.systems`)"
@@ -61,7 +67,7 @@ http:
       rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypto
+        certResolver: kong-letsencrypt
   middlewares:
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
