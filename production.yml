@@ -75,7 +75,7 @@ services:
     container_name: kong
     image: kong:latest
     restart: always
-    entrypoint: chmod -R 777 /usr/local/kong
+    entrypoint: sudo chmod -R 777 /usr/local/kong
     privileged: true
     environment:
       KONG_DATABASE: "off"
