@@ -73,9 +73,10 @@ services:
 
   kong:
     container_name: kong
-    image: kong:latest
+    build:
+      context: .
+      dockerfile: ./compose/kong/Dockerfile
     restart: always
-    entrypoint: sudo chmod -R 777 /usr/local/kong
     privileged: true
     environment:
       KONG_DATABASE: "off"
