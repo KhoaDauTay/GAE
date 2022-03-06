@@ -49,7 +49,12 @@ http:
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
-
+    kong:
+      service: kong-service
+      entryPoints:
+        - web-secure
+      middlewares:
+      rule: "Host(`gae-gw.systems`)"
   middlewares:
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
@@ -67,6 +72,11 @@ http:
       loadBalancer:
         servers:
           - url: http://flower:5555
+
+    kong-service:
+      loadBalancer:
+        servers:
+          - url: https://kong:8443
 
 providers:
   # https://docs.traefik.io/master/providers/file/
