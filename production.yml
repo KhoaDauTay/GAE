@@ -75,6 +75,7 @@ services:
     container_name: kong
     image: kong:latest
     restart: always
+    entrypoint: chmod -R 777 /usr/local/kong
     environment:
       KONG_DATABASE: "off"
       KONG_PROXY_ACCESS_LOG: /dev/stdout
@@ -101,7 +102,7 @@ services:
       - "8444:8444"
       - "8000:8000"
       - "8443:8443"
-    command: sudo chmod -R 777 /usr/local/kong
+
 
   portainer:
     image : portainer/portainer-ce:latest
