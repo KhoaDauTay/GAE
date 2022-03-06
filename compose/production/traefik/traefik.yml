@@ -67,7 +67,7 @@ http:
       rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: kong-letsencrypt
+        certResolver: letsencrypt
   middlewares:
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
