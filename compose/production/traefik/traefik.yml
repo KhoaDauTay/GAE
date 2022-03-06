@@ -30,7 +30,8 @@ certificatesResolvers:
       storage: /etc/traefik/acme/acme.json
       # https://docs.traefik.io/master/https/acme/#httpchallenge
       httpChallenge:
-        entryPoint: web
+        entryPoint: web, kong-secure
+
 
 http:
   routers:
@@ -57,8 +58,7 @@ http:
       service: kong-service
       entryPoints:
         - kong-secure
-      middlewares:
-      rule: "Host(`gae-gw.systems`)"
+      rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypto
