@@ -92,11 +92,7 @@ services:
       timeout: 10s
       retries: 3
     volumes:
-      - ./compose/kong/logs:/usr/local/kong/logs
-      - ./compose/kong/logs/log.log:/usr/local/kong/logs/log.log
       - ./compose/kong/declarative:/usr/local/kong/declarative
-      - ./compose/kong/config/nginx.conf:/usr/local/kong/nginx.conf
-      - ./compose/kong/config/nginx-kong.conf:/usr/local/kong/nginx-kong.conf
     ports:
       - "8001:8001"
       - "8444:8444"
