@@ -1,8 +1,5 @@
 log:
   level: INFO
-api:
-  dashboard: true
-  insecure: true
 
 entryPoints:
   web:
@@ -85,8 +82,7 @@ http:
 #       loadBalancer:
 #         servers:
 #           - url: http://kong:8443
-pilot:
-    token: "8b1b6148-d3b7-43f8-8895-52692125229a"
+
 
 providers:
   # https://docs.traefik.io/master/providers/file/
