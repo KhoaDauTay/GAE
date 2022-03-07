@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "notus-angular": {
+    "final-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -14,12 +14,12 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [ "chart.js" ],
-            "outputPath": "dist/notus-angular",
+            "outputPath": "dist/final-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -27,11 +27,19 @@
             "styles": [
               "src/styles.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "src/assets/styles/tailwind.css",
+              "src/assets/styles/tailwind.css"
             ],
             "scripts": []
           },
           "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -42,7 +50,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -66,18 +73,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "notus-angular:build"
+            "browserTarget": "final-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "notus-angular:build:production"
+              "browserTarget": "final-frontend:build:production"
+            },
+            "development": {
+              "browserTarget": "final-frontend:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "notus-angular:build"
+            "browserTarget": "final-frontend:build"
           }
         },
         "test": {
@@ -114,15 +125,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "notus-angular:serve"
+            "devServerTarget": "final-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "notus-angular:serve:production"
+              "devServerTarget": "final-frontend:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "notus-angular"
+  "defaultProject": "final-frontend"
 }
