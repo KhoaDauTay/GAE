@@ -123,7 +123,7 @@ upstreams:
       type: https
   slots: 200
   targets:
-    - target: 103.82.26.214:5000 # IP: port or domain:port
+    - target: gae-gw.systems:80 # IP: port or domain:port
       weight: 100
 
 
@@ -132,10 +132,9 @@ upstreams:
 services:
 - name: api-service
   host: default-upstream
-  port: 5000
 #  url : http://0.0.0.0:8080
   connect_timeout: 60000
-  protocol: http
+  protocol: https
   read_timeout: 60000
   retries: 5
   write_timeout: 60000
@@ -150,7 +149,7 @@ services:
       paths:
         - /api
       protocols:
-      - http
+      - https
       regex_priority: 0
       strip_path: false
       preserve_host: false
