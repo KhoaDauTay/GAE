@@ -1,9 +1,8 @@
 {
-  "name": "notus-angular",
+  "name": "gae-dashboard",
   "version": "1.1.0",
-  "description": "Notus Angular - Free Tailwind CSS UI Kit and Admin by Creative Tim.",
-  "repository": "https://github.com/creativetimofficial/notus-angular",
-  "license": "MIT",
+  "description": "GAE-AD - Admin dashboard",
+  "repository": "https://github.com/KhoaDauTay/GAE",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

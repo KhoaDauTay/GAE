@@ -12,12 +12,9 @@ import { TablesComponent } from "./views/admin/tables/tables.component";
 
 // auth views
 import { LoginComponent } from "./views/auth/login/login.component";
-import { RegisterComponent } from "./views/auth/register/register.component";
 
 // no layouts views
 import { IndexComponent } from "./views/index/index.component";
-import { LandingComponent } from "./views/landing/landing.component";
-import { ProfileComponent } from "./views/profile/profile.component";
 
 const routes: Routes = [
   // admin views
@@ -37,13 +34,10 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: "login", component: LoginComponent },
-      { path: "register", component: RegisterComponent },
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },
   // no layout views
-  { path: "profile", component: ProfileComponent },
-  { path: "landing", component: LandingComponent },
   { path: "", component: IndexComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];

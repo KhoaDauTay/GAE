@@ -15,12 +15,9 @@ import { TablesComponent } from "./views/admin/tables/tables.component";
 
 // auth views
 import { LoginComponent } from "./views/auth/login/login.component";
-import { RegisterComponent } from "./views/auth/register/register.component";
 
 // no layouts views
 import { IndexComponent } from "./views/index/index.component";
-import { LandingComponent } from "./views/landing/landing.component";
-import { ProfileComponent } from "./views/profile/profile.component";
 
 // components for views and layouts
 
@@ -39,9 +36,7 @@ import { FooterComponent } from "./components/footers/footer/footer.component";
 import { FooterSmallComponent } from "./components/footers/footer-small/footer-small.component";
 import { HeaderStatsComponent } from "./components/headers/header-stats/header-stats.component";
 import { IndexNavbarComponent } from "./components/navbars/index-navbar/index-navbar.component";
-import { IndexDropdownComponent } from "./components/dropdowns/index-dropdown/index-dropdown.component";
 import { TableDropdownComponent } from "./components/dropdowns/table-dropdown/table-dropdown.component";
-import { PagesDropdownComponent } from "./components/dropdowns/pages-dropdown/pages-dropdown.component";
 import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
@@ -52,8 +47,6 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
     DashboardComponent,
     CardBarChartComponent,
     CardLineChartComponent,
-    IndexDropdownComponent,
-    PagesDropdownComponent,
     TableDropdownComponent,
     NotificationDropdownComponent,
     UserDropdownComponent,
@@ -76,10 +69,7 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
     SettingsComponent,
     TablesComponent,
     LoginComponent,
-    RegisterComponent,
     IndexComponent,
-    LandingComponent,
-    ProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
