@@ -15,8 +15,7 @@ entryPoints:
     # https
     address: ":443"
 
-  kong-secure:
-    # https
+  kong:
     address: ":8000"
 
   flower:
@@ -53,10 +52,10 @@ http:
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
-    kong:
-      service: kong-service
+    kong-secure-router:
+      service: kong
       entryPoints:
-        - kong-secure
+        - kong
       rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
@@ -79,7 +78,7 @@ http:
         servers:
           - url: http://flower:5555
 
-    kong-service:
+    kong:
       loadBalancer:
         servers:
           - url: http://kong:8000
