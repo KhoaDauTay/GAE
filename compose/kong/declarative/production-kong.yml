@@ -24,19 +24,6 @@ plugins:
     run_on_preflight: true
     claims_to_verify:
       - exp
-      
-- name: acme
-  config:
-    account_email: khoadautay@gmail.com
-    domains:
-      - "*.gae-gw.systems"
-      - "gae-gw.systems"
-    tos_accepted: true
-    storage: redis
-    storage_config:
-      redis:
-        host: redis.service
-        port: 6379
 #- name: rate-limiting
 #  config:
 #    second: 5
