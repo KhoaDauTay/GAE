@@ -15,9 +15,6 @@ entryPoints:
     # https
     address: ":443"
 
-#   kong:
-#     address: ":8443"
-
   flower:
     address: ":5555"
 
@@ -52,14 +49,6 @@ http:
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
-#     kong-secure-router:
-#       service: kong
-#       entryPoints:
-#         - kong
-#       rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
-#       tls:
-#         # https://docs.traefik.io/master/routing/routers/#certresolver
-#         certResolver: letsencrypt
   middlewares:
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
@@ -77,12 +66,6 @@ http:
       loadBalancer:
         servers:
           - url: http://flower:5555
-
-#     kong:
-#       loadBalancer:
-#         servers:
-#           - url: http://kong:8443
-
 
 providers:
   # https://docs.traefik.io/master/providers/file/
