@@ -322,6 +322,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:4200',
 ]
+CORS_ALLOW_CREDENTIALS = True
 # Casbin
 # ------------------------------------------------------------------------------
 CASBIN_MODEL = os.path.join(APPS_DIR, "auth", "casbin", "role_rbac.conf")
