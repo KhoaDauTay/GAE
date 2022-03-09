@@ -54,6 +54,7 @@ http:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
       # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
       headers:
+        accessControlAllowOrigin: "*"
         hostsProxyHeaders: ["X-CSRFToken"]
 
   services:
