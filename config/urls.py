@@ -59,11 +59,11 @@ if settings.DEBUG:
 # API URLS
 urlpatterns += [
     # API base url
-    path("api/", include("config.api_router")),
     # Oauth token
     path("oauth/", include("oauth2_provider.urls", namespace="oauth2_provider")),
     path("api/token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/", include("config.api_router")),
 ]
 
 if settings.DEBUG:
