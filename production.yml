@@ -83,3 +83,4 @@ services:
       - ./portainer-data:/data
     ports:
       - "9000:9000"
+      - "9443:9443"

@@ -19,7 +19,7 @@ entryPoints:
     address: ":5555"
 
   portainer:
-    address: ":9000"
+    address: ":9443"
 
 certificatesResolvers:
   letsencrypt:
@@ -83,7 +83,7 @@ http:
     portainer:
       loadBalancer:
         servers:
-          - url: http://portainer:9000
+          - url: http://portainer:9443
 
 providers:
   # https://docs.traefik.io/master/providers/file/
