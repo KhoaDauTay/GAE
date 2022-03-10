@@ -18,6 +18,9 @@ entryPoints:
   flower:
     address: ":5555"
 
+  portainer:
+    address: ":9443"
+
 certificatesResolvers:
   letsencrypt:
     # https://docs.traefik.io/master/https/acme/#lets-encrypt
@@ -49,6 +52,15 @@ http:
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
+
+    portainer-secure-router:
+      rule: "Host(`gae-gw.systems`)"
+      entryPoints:
+        - portainer
+      service: portainer
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
   middlewares:
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
@@ -67,6 +79,11 @@ http:
       loadBalancer:
         servers:
           - url: http://flower:5555
+
+    portainer:
+      loadBalancer:
+        servers:
+          - url: http://portainer:9443
 
 providers:
   # https://docs.traefik.io/master/providers/file/
