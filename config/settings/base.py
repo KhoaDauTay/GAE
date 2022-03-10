@@ -323,7 +323,6 @@ REST_FRAMEWORK = {
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
 # Casbin
 # ------------------------------------------------------------------------------
 CASBIN_MODEL = os.path.join(APPS_DIR, "auth", "casbin", "role_rbac.conf")
