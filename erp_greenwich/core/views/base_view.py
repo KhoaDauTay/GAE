@@ -9,16 +9,21 @@ from rest_framework import status
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.serializers import Serializer
 from rest_framework.viewsets import ModelViewSet
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from erp_greenwich.auth.oauth2_config.permissions.token_with_action import (
+    IsAuthenticatedOrJWTTokenPermissionWithAction,
     IsAuthenticatedOrTokenPermissionWithAction,
 )
 from erp_greenwich.core.response import APIResponse
 
 
 class BaseViewSet(ModelViewSet):
-    authentication_classes = [OAuth2Authentication]
-    permission_classes = [IsAuthenticatedOrTokenPermissionWithAction]
+    authentication_classes = [OAuth2Authentication, JWTAuthentication]
+    permission_classes = [
+        IsAuthenticatedOrTokenPermissionWithAction,
+        IsAuthenticatedOrJWTTokenPermissionWithAction,
+    ]
     serializer_class = None
     filter_backends = [SearchFilter, OrderingFilter]
     filterset_fields = []

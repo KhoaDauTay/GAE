@@ -37,3 +37,4 @@ casbin==1.15.4
 simpleeval==0.9.12
 wcmatch==8.3
 casbin-django-orm-adapter==0.0.1
+djangorestframework-simplejwt==5.1.0

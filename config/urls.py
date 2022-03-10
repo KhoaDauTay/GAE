@@ -8,7 +8,9 @@ from django.views.generic import TemplateView
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
+from rest_framework_simplejwt.views import TokenRefreshView
 
+from erp_greenwich.auth.api.views import MyTokenObtainPairView
 from erp_greenwich.users.views import HomeView, index
 
 schema_view = get_schema_view(
@@ -60,6 +62,8 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # Oauth token
     path("oauth/", include("oauth2_provider.urls", namespace="oauth2_provider")),
+    path("api/token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
 
 if settings.DEBUG:

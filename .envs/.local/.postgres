@@ -2,6 +2,6 @@
 # ------------------------------------------------------------------------------
 POSTGRES_HOST=postgres
 POSTGRES_PORT=5432
-POSTGRES_DB=erp_greenwich_1
+POSTGRES_DB=erp_greenwich
 POSTGRES_USER=bvAZsGFfgNFCegPejEXROdUCbbNlOpAa
 POSTGRES_PASSWORD=pIrqPubnmW6ST05oIrdN4ATDejOyBlPYBiaASV97eKmvVw4Ic4uyc5VnqdMrPsWq

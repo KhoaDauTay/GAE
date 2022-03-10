@@ -6,14 +6,34 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
 from erp_greenwich.core.validation import APIValidationError
+from erp_greenwich.users.models import Client
+from erp_greenwich.utils.client import get_client
 
 User = get_user_model()
 
 
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = ["address", "city", "country", "about_me", "postal_code"]
+
+
 class UserSerializer(serializers.ModelSerializer):
+    role = serializers.SerializerMethodField()
+    client = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ["id", "name", "email"]
+        fields = ["id", "name", "email", "role", "first_name", "last_name", "client"]
+
+    @staticmethod
+    def get_role(obj: User):
+        return obj.role.name
+
+    @staticmethod
+    def get_client(obj: User):
+        client: Client = get_client(obj)
+        return ClientSerializer(client).data
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
