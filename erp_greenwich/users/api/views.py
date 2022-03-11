@@ -11,7 +11,7 @@ User = get_user_model()
 
 class UserViewSet(BaseViewSet):
     serializer_class = UserSerializer
-    lookup_field = "username"
+    lookup_field = "id"
     serializer_map = {
         "me": UserSerializer,
         "retrieve": UserSerializer,
