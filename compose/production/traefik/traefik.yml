@@ -34,21 +34,21 @@ http:
       middlewares:
         - csrf
       service: django
-      tls: true
+
 
     flower-secure-router:
       rule: "Host(`gae-gw.systems`)"
       entryPoints:
         - flower
       service: flower
-      tls: true
+
 
     portainer-secure-router:
       rule: "Host(`gae-gw.systems`)"
       entryPoints:
         - portainer
       service: portainer
-      tls: true
+
   middlewares:
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
@@ -73,12 +73,12 @@ http:
         servers:
           - url: http://portainer:9443
 
-#tls:
-#  certificates:
-#    - certFile: /etc/traefik/acme/gae-gw-systems.crt
-#      keyFile: /etc/traefik/acme/gae-gw-systems.key
-#      stores:
-#        - default
+tls:
+  certificates:
+    - certFile: /etc/traefik/acme/gae-gw-systems.crt
+      keyFile: /etc/traefik/acme/gae-gw-systems.key
+      stores:
+        - default
 
 providers:
   # https://docs.traefik.io/master/providers/file/
