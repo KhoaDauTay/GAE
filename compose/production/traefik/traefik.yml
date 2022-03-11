@@ -1,6 +1,7 @@
 api:
   dashboard: true
   insecure: true
+
 log:
   level: DEBUG
 
@@ -24,16 +25,6 @@ entryPoints:
   portainer:
     address: ":9443"
 
-certificatesResolvers:
-  letsencrypt:
-    # https://docs.traefik.io/master/https/acme/#lets-encrypt
-    acme:
-      email: "khoadautay@gmail.com"
-      storage: /etc/traefik/acme/acme.json
-      # https://docs.traefik.io/master/https/acme/#httpchallenge
-      httpChallenge:
-        entryPoint: web
-
 http:
   routers:
     web-secure-router:
@@ -43,27 +34,21 @@ http:
       middlewares:
         - csrf
       service: django
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+      tls: true
 
     flower-secure-router:
       rule: "Host(`gae-gw.systems`)"
       entryPoints:
         - flower
       service: flower
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+      tls: true
 
     portainer-secure-router:
       rule: "Host(`gae-gw.systems`)"
       entryPoints:
         - portainer
       service: portainer
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+      tls: true
   middlewares:
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
@@ -87,6 +72,11 @@ http:
       loadBalancer:
         servers:
           - url: http://portainer:9443
+
+tls:
+  certificates:
+    - certFile: /etc/traefik/certs/gae-gw-systems.crt
+      keyFile: /etc/traefik/certs/gae-gw-systems.key
 
 providers:
   # https://docs.traefik.io/master/providers/file/
