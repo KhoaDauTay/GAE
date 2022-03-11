@@ -18,6 +18,9 @@ entryPoints:
   web-secure:
     # https
     address: ":443"
+    http:
+      tls:
+        options: default
 
   flower:
     address: ":5555"
@@ -34,7 +37,6 @@ http:
       middlewares:
         - csrf
       service: django
-      tls: {}
 
 
     flower-secure-router:
@@ -42,7 +44,6 @@ http:
       entryPoints:
         - flower
       service: flower
-      tls: {}
 
 
     portainer-secure-router:
@@ -50,7 +51,6 @@ http:
       entryPoints:
         - portainer
       service: portainer
-      tls: {}
 
   middlewares:
     csrf:
@@ -82,11 +82,16 @@ tls:
       keyFile: "/etc/traefik/acme/gae-gw-systems.key"
       stores:
         - default
+  options:
+    default:
+      minVersion: VersionTLS12
+      maxVersion: VersionTLS13
   stores:
       default:
         defaultCertificate:
           certFile: "/etc/traefik/acme/gae-gw-systems.cert"
           keyFile: "/etc/traefik/acme/gae-gw-systems.key"
+
 providers:
   # https://docs.traefik.io/master/providers/file/
   file:
