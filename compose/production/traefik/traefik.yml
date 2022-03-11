@@ -73,12 +73,12 @@ http:
         servers:
           - url: http://portainer:9443
 
-tls:
-  certificates:
-    - certFile: /etc/traefik/acme/gae-gw-systems.crt
-      keyFile: /etc/traefik/acme/gae-gw-systems.key
-      stores:
-        - default
+#tls:
+#  certificates:
+#    - certFile: /etc/traefik/acme/gae-gw-systems.crt
+#      keyFile: /etc/traefik/acme/gae-gw-systems.key
+#      stores:
+#        - default
 
 providers:
   # https://docs.traefik.io/master/providers/file/
