@@ -75,8 +75,8 @@ http:
 
 tls:
   certificates:
-    - certFile: /etc/traefik/certs/gae-gw-systems.crt
-      keyFile: /etc/traefik/certs/gae-gw-systems.key
+    - certFile: /etc/traefik/acme/gae-gw-systems.crt
+      keyFile: /etc/traefik/acme/gae-gw-systems.key
 
 providers:
   # https://docs.traefik.io/master/providers/file/
