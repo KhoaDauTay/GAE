@@ -9,11 +9,11 @@ entryPoints:
   web:
     # http
     address: ":80"
-    http:
-      # https://docs.traefik.io/routing/entrypoints/#entrypoint
-      redirections:
-        entryPoint:
-          to: web-secure
+#    http:
+#      # https://docs.traefik.io/routing/entrypoints/#entrypoint
+#      redirections:
+#        entryPoint:
+#          to: web-secure
 
   web-secure:
     # https
@@ -39,15 +39,14 @@ http:
       rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       entryPoints:
         - web
-        - web-secure
       middlewares:
         - csrf
       service: django
-      tls:
-        domains:
-          - main: "gae-gw.systems"
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+#      tls:
+#        domains:
+#          - main: "gae-gw.systems"
+#        # https://docs.traefik.io/master/routing/routers/#certresolver
+#        certResolver: letsencrypt
 
     flower-secure-router:
       rule: "Host(`gae-gw.systems`)"
