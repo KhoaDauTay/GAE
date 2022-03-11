@@ -9,4 +9,10 @@ export class UsersQuery extends QueryEntity<UsersState> {
     super(store);
   }
 
+  getMe() {
+    return this.getEntity("me");
+  }
+  getAvatar() {
+    return this.getEntity("me").avatar;
+  }
 }

@@ -39,7 +39,7 @@ export class AuthenticationStore extends Store<AuthenticationState> {
     });
 
     if (value) {
-      this.userService.get("me").subscribe();
+      this.userService.get(userId).subscribe();
     }
   }
 

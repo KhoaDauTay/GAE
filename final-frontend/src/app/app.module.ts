@@ -9,7 +9,7 @@ import { AdminComponent } from "./layouts/admin/admin.component";
 
 // admin views
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
-import { SettingsComponent } from "./views/admin/settings/settings.component";
+import { ProfileComponent } from "./views/admin/profile/profile.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
 
 // auth views
@@ -65,7 +65,7 @@ import {HttpClientModule} from "@angular/common/http";
         AdminNavbarComponent,
         IndexNavbarComponent,
         AdminComponent,
-        SettingsComponent,
+        ProfileComponent,
         TablesComponent,
         IndexComponent,
     ],

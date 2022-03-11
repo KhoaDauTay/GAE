@@ -14,7 +14,7 @@ export class UsersStore extends EntityStore<UsersState> {
   akitaPreAddEntity(newEntity: User): getEntityType<UsersState> {
     return {
       ...newEntity,
-      name: `${newEntity.firstName} ${newEntity.lastName}`
+      name: `${newEntity.first_name} ${newEntity.last_name}`
     };
   }
 

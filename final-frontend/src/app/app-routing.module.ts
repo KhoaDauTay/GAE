@@ -6,7 +6,7 @@ import { AdminComponent } from "./layouts/admin/admin.component";
 
 // admin views
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
-import { SettingsComponent } from "./views/admin/settings/settings.component";
+import { ProfileComponent } from "./views/admin/profile/profile.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
 
 // auth views
@@ -24,7 +24,7 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard],
     children: [
       { path: "dashboard", component: DashboardComponent },
-      { path: "settings", component: SettingsComponent },
+      { path: "profile", component: ProfileComponent },
       { path: "tables", component: TablesComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],

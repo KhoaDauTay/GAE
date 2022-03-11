@@ -5,7 +5,9 @@ import { Component, OnInit } from "@angular/core";
   templateUrl: "./card-profile.component.html",
 })
 export class CardProfileComponent implements OnInit {
-  constructor() {}
+  constructor(
+
+  ) {}
 
   ngOnInit(): void {}
 }
