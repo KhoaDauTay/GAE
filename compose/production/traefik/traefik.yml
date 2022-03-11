@@ -75,11 +75,15 @@ http:
 
 tls:
   certificates:
-    - certFile: /etc/traefik/acme/gae-gw-systems.crt
-      keyFile: /etc/traefik/acme/gae-gw-systems.key
+    - certFile: "/etc/traefik/acme/gae-gw-systems.crt"
+      keyFile: "/etc/traefik/acme/gae-gw-systems.key"
       stores:
         - default
-
+  stores:
+      default:
+        defaultCertificate:
+          certFile: "/etc/traefik/acme/gae-gw-systems.crt"
+          keyFile: "/etc/traefik/acme/gae-gw-systems.key"
 providers:
   # https://docs.traefik.io/master/providers/file/
   file:
