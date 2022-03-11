@@ -34,6 +34,7 @@ http:
       middlewares:
         - csrf
       service: django
+      tls: {}
 
 
     flower-secure-router:
@@ -41,6 +42,7 @@ http:
       entryPoints:
         - flower
       service: flower
+      tls: {}
 
 
     portainer-secure-router:
@@ -48,6 +50,7 @@ http:
       entryPoints:
         - portainer
       service: portainer
+      tls: {}
 
   middlewares:
     csrf:
@@ -75,14 +78,14 @@ http:
 
 tls:
   certificates:
-    - certFile: "/etc/traefik/acme/gae-gw-systems.crt"
+    - certFile: "/etc/traefik/acme/gae-gw-systems.cert"
       keyFile: "/etc/traefik/acme/gae-gw-systems.key"
       stores:
         - default
   stores:
       default:
         defaultCertificate:
-          certFile: "/etc/traefik/acme/gae-gw-systems.crt"
+          certFile: "/etc/traefik/acme/gae-gw-systems.cert"
           keyFile: "/etc/traefik/acme/gae-gw-systems.key"
 providers:
   # https://docs.traefik.io/master/providers/file/
