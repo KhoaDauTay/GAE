@@ -56,14 +56,6 @@ class HomeView(TemplateView):
     template_name = "pages/home.html"
 
 
-def index(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect(
-            reverse("users:detail", kwargs={"username": request.user.username})
-        )
-    return redirect("home/")
-
-
 @require_http_methods(["POST"])
 @login_required
 def change_profile(request):
@@ -97,4 +89,4 @@ def change_profile(request):
         )
     except User.DoesNotExist:
         messages.error(request, "User info not found")
-        return redirect("home/")
+        return redirect("")

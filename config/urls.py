@@ -11,7 +11,7 @@ from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from erp_greenwich.auth.api.views import MyTokenObtainPairView
-from erp_greenwich.users.views import HomeView, index
+from erp_greenwich.users.views import HomeView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -30,8 +30,6 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("", index, name="index"),
-    path("home/", HomeView.as_view(), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
@@ -51,6 +49,7 @@ urlpatterns = [
         schema_view.with_ui("swagger", cache_timeout=0),
         name="enduser-schema-swagger-ui",
     ),
+    path("", HomeView.as_view(), name="home"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
