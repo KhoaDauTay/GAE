@@ -38,11 +38,14 @@ http:
     web-secure-router:
       rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       entryPoints:
+        - web
         - web-secure
       middlewares:
         - csrf
       service: django
       tls:
+        domains:
+          - main: "gae-gw.systems"
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
