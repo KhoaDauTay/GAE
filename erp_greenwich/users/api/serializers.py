@@ -24,7 +24,16 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "name", "email", "role", "first_name", "last_name", "client"]
+        fields = [
+            "id",
+            "name",
+            "email",
+            "avatar",
+            "role",
+            "first_name",
+            "last_name",
+            "client",
+        ]
 
     @staticmethod
     def get_role(obj: User):
