@@ -51,6 +51,12 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 user_redirect_view = UserRedirectView.as_view()
 
+def index(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(
+            reverse("users:detail", kwargs={"username": request.user.username})
+        )
+    return redirect("home/")
 
 class HomeView(TemplateView):
     template_name = "pages/home.html"
@@ -89,4 +95,4 @@ def change_profile(request):
         )
     except User.DoesNotExist:
         messages.error(request, "User info not found")
-        return redirect("")
+        return redirect("home/")

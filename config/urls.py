@@ -11,6 +11,7 @@ from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from erp_greenwich.auth.api.views import MyTokenObtainPairView
+from erp_greenwich.users.views import HomeView, index
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -29,7 +30,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", index, name="index"),
+    path("home/", HomeView.as_view(), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
