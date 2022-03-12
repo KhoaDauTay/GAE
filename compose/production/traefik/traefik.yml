@@ -170,7 +170,7 @@ http:
     auth:
       basicAuth:
         users:
-          - "admin:khoa0305"
+          - "admin:$2y$10$K1xogmLZKNVgPi8DCc0m4uwOsVElw.ww53fQR1vloHo9tomxdoI8i"
     csrf:
       headers:
         hostsProxyHeaders: ["X-CSRFToken"]
