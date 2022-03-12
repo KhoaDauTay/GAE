@@ -8,7 +8,7 @@
         class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
         type="button"
       >
-        Settings
+        Update
       </button>
     </div>
   </div>
@@ -24,12 +24,12 @@
               class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
               htmlFor="grid-password"
             >
-              Username
+              Name
             </label>
             <input
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="lucky.jesse"
+              value="{{user.name}}"
             />
           </div>
         </div>
@@ -44,7 +44,7 @@
             <input
               type="email"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="jesse@example.com"
+              value="{{user.email}}" disabled
             />
           </div>
         </div>
@@ -59,7 +59,7 @@
             <input
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="Lucky"
+              value="{{user.first_name}}"
             />
           </div>
         </div>
@@ -74,7 +74,7 @@
             <input
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="Jesse"
+              value="{{user.last_name}}"
             />
           </div>
         </div>
@@ -97,7 +97,7 @@
             <input
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+              value="{{user.client.address}}"
             />
           </div>
         </div>
@@ -110,9 +110,9 @@
               City
             </label>
             <input
-              type="email"
+              type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="New York"
+              value="{{user.client.city}}"
             />
           </div>
         </div>
@@ -127,7 +127,7 @@
             <input
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="United States"
+              value="{{user.client.country}}"
             />
           </div>
         </div>
@@ -142,7 +142,7 @@
             <input
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="Postal Code"
+              value="{{user.client.postal_code}}"
             />
           </div>
         </div>
@@ -166,9 +166,8 @@
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
               rows="4"
+              [value]="user.client.about_me"
             >
-                  A beautiful UI Kit and Admin for Angular & Tailwind CSS. It is Free
-                  and Open Source.
                 </textarea
             >
           </div>

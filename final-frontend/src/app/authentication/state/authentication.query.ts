@@ -26,6 +26,9 @@ export class AuthenticationQuery extends Query<AuthenticationState> {
   isLoggedIn() {
     return this.getValue().isLoggedIn;
   }
+  userId() {
+    return this.getValue().userId;
+  }
   constructor(
     protected store: AuthenticationStore,
     private readonly usersQuery: UsersQuery

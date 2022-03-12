@@ -5,6 +5,7 @@ import {AuthenticationQuery} from "../../../authentication/state/authentication.
 import {Router} from "@angular/router";
 import {UsersQuery} from "../../../authentication/state/users/users.query";
 import {User} from "../../../authentication/state/users/user.model";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: "app-user-dropdown",
@@ -13,6 +14,7 @@ import {User} from "../../../authentication/state/users/user.model";
 export class UserDropdownComponent implements OnInit,AfterViewInit {
   constructor(
     private readonly authService: AuthenticationService,
+    private readonly userQuery: UsersQuery,
     private readonly authQuery: AuthenticationQuery,
     private readonly router: Router,
   ) {
@@ -23,9 +25,13 @@ export class UserDropdownComponent implements OnInit,AfterViewInit {
   @ViewChild("popoverDropdownRef", { static: false })
   popoverDropdownRef: ElementRef;
   ngOnInit(): void {
-    this.authQuery.user$.subscribe(
-      (user) => this.avatar = user.avatar
-    );
+    const userJson: string = localStorage.getItem(environment.USER_STORAGE_KEY)
+    if (userJson) {
+      const user: User = JSON.parse(userJson);
+      this.avatar = user.avatar;
+    } else {
+      this.avatar = this.userQuery.getAvatar(this.authQuery.userId());
+    }
   }
   ngAfterViewInit() {
     createPopper(
@@ -38,11 +44,7 @@ export class UserDropdownComponent implements OnInit,AfterViewInit {
   }
   toggleDropdown(event) {
     event.preventDefault();
-    if (this.dropdownPopoverShow) {
-      this.dropdownPopoverShow = false;
-    } else {
-      this.dropdownPopoverShow = true;
-    }
+    this.dropdownPopoverShow = !this.dropdownPopoverShow;
   }
 
   logout() {

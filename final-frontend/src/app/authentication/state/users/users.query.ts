@@ -12,7 +12,7 @@ export class UsersQuery extends QueryEntity<UsersState> {
   getMe() {
     return this.getEntity("me");
   }
-  getAvatar() {
-    return this.getEntity("me").avatar;
+  getAvatar(id) {
+    return this.getEntity(id).avatar;
   }
 }

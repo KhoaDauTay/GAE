@@ -66,6 +66,7 @@ export class TokenService {
 
   removeTokens() {
     localStorage.removeItem(this.TOKEN_STORAGE_KEY);
+    localStorage.removeItem(environment.USER_STORAGE_KEY);
   }
 
   private refreshTokens(accessToken: string, refreshToken: string): Observable<Tokens | null> {

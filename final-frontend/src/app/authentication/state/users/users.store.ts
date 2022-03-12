@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {EntityState, EntityStore, getEntityType, StoreConfig} from "@datorama/akita";
+import {EntityState, EntityStore, StoreConfig} from "@datorama/akita";
 import { User } from "./user.model";
 
 export interface UsersState extends EntityState<User> {}
@@ -11,11 +11,4 @@ export class UsersStore extends EntityStore<UsersState> {
   constructor() {
     super();
   }
-  akitaPreAddEntity(newEntity: User): getEntityType<UsersState> {
-    return {
-      ...newEntity,
-      name: `${newEntity.first_name} ${newEntity.last_name}`
-    };
-  }
-
 }
