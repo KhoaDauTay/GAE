@@ -137,11 +137,15 @@ http:
     api:
       rule: Host(`traefik.example.com`)
       service: api@internal
+      entryPoints:
+        - traefik
       middlewares:
         - auth
     dashboard:
       rule: Host(`gae-gw.systems`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
       service: api@internal
+      entryPoints:
+        - traefik
       middlewares:
         - auth
     web-secure-router:
