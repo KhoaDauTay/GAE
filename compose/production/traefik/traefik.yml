@@ -134,15 +134,8 @@ certificatesResolvers:
 
 http:
   routers:
-    api:
-      rule: Host(`traefik.example.com`)
-      service: api@internal
-      entryPoints:
-        - traefik
-      middlewares:
-        - auth
     dashboard:
-      rule: Host(`gae-gw.systems`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+      rule: Host(`gae-gw.systems`) && PathPrefix(`/dashboard`))
       service: api@internal
       entryPoints:
         - traefik
