@@ -5,9 +5,9 @@ from erp_greenwich.auth.api.views import ApplicationViewSet
 from erp_greenwich.users.api.views import UserViewSet
 
 if settings.DEBUG:
-    router = DefaultRouter()
+    router = DefaultRouter(trailing_slash=False)
 else:
-    router = SimpleRouter()
+    router = SimpleRouter(trailing_slash=False)
 
 router.register("users", UserViewSet, basename="users")
 router.register("applications", ApplicationViewSet, basename="applications")
