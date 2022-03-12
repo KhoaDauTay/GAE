@@ -100,7 +100,7 @@
 
 api:
   dashboard: true
-  insecure: true
+  debug: true
 
 log:
   level: ERROR
@@ -110,7 +110,6 @@ entryPoints:
     # http
     address: ":80"
     http:
-      # https://docs.traefik.io/routing/entrypoints/#entrypoint
       redirections:
         entryPoint:
           to: web-secure
@@ -122,19 +121,29 @@ entryPoints:
   flower:
     address: ":5555"
 
+  traefik:
+    address: ":8080"
 
 certificatesResolvers:
   letsencrypt:
-    # https://docs.traefik.io/master/https/acme/#lets-encrypt
     acme:
       email: "cuonglieu3256@gmail.com"
       storage: /etc/traefik/acme/acme.json
-      # https://docs.traefik.io/master/https/acme/#httpchallenge
       httpChallenge:
         entryPoint: web
 
 http:
   routers:
+    api:
+      rule: Host(`traefik.example.com`)
+      service: api@internal
+      middlewares:
+        - auth
+    dashboard:
+      rule: Host(`gae-gw.systems`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+      service: api@internal
+      middlewares:
+        - auth
     web-secure-router:
       rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       entryPoints:
@@ -143,7 +152,6 @@ http:
         - csrf
       service: django
       tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
     flower-secure-router:
@@ -152,13 +160,14 @@ http:
         - flower
       service: flower
       tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
   middlewares:
+    auth:
+      basicAuth:
+        users:
+          - "admin:khoa0305"
     csrf:
-      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
-      # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
       headers:
         hostsProxyHeaders: ["X-CSRFToken"]
 
@@ -174,7 +183,6 @@ http:
           - url: http://flower:5555
 
 providers:
-  # https://docs.traefik.io/master/providers/file/
   file:
     filename: /etc/traefik/traefik.yml
     watch: true
