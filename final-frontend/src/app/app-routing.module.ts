@@ -7,7 +7,7 @@ import { AdminComponent } from "./layouts/admin/admin.component";
 // admin views
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
 import { ProfileComponent } from "./views/admin/profile/profile.component";
-import {TablesComponent} from "./views/admin/tables/tables.component";
+import {UsersComponent} from "./views/admin/tables/tables.component";
 
 // auth views
 import { LoginComponent } from "./authentication/login/login.component";
@@ -15,7 +15,8 @@ import { LoginComponent } from "./authentication/login/login.component";
 // no layouts views
 import { IndexComponent } from "./views/index/index.component";
 import {AuthenticationGuard} from "./authentication/services";
-import {ApplicationsComponent} from "./views/admin/applications/applications.component";
+import {ApplicationsComponent} from "./applications/applications.component";
+import {ApplicationSettingComponent} from "./applications/application-setting/application-setting.component";
 
 const routes: Routes = [
   // admin views
@@ -26,8 +27,9 @@ const routes: Routes = [
     children: [
       { path: "dashboard", component: DashboardComponent },
       { path: "profile", component: ProfileComponent },
-      { path: "users", component: TablesComponent },
+      { path: "users", component: UsersComponent },
       { path: "applications", component: ApplicationsComponent },
+      { path: "applications/:id", component: ApplicationSettingComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
