@@ -25,7 +25,6 @@ export class TokenService {
 
   private getTokens(): Tokens | null {
     const tokenJSON = localStorage.getItem(this.TOKEN_STORAGE_KEY);
-    console.log(tokenJSON);
     return tokenJSON ? JSON.parse(tokenJSON) as Tokens : null;
   }
 

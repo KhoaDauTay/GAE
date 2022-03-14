@@ -4,7 +4,7 @@ import { Component, OnInit } from "@angular/core";
   selector: "app-tables",
   templateUrl: "./tables.component.html",
 })
-export class TablesComponent implements OnInit {
+export class UsersComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

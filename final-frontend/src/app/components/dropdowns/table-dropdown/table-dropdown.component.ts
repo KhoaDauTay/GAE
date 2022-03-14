@@ -21,10 +21,6 @@ export class TableDropdownComponent implements AfterViewInit {
   }
   toggleDropdown(event) {
     event.preventDefault();
-    if (this.dropdownPopoverShow) {
-      this.dropdownPopoverShow = false;
-    } else {
-      this.dropdownPopoverShow = true;
-    }
+    this.dropdownPopoverShow = !this.dropdownPopoverShow;
   }
 }

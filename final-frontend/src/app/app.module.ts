@@ -10,7 +10,7 @@ import { AdminComponent } from "./layouts/admin/admin.component";
 // admin views
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
 import { ProfileComponent } from "./views/admin/profile/profile.component";
-import { TablesComponent } from "./views/admin/tables/tables.component";
+import { UsersComponent } from "./views/admin/tables/tables.component";
 
 // auth views
 
@@ -42,6 +42,8 @@ import { AkitaNgRouterStoreModule } from "@datorama/akita-ng-router-store";
 import { environment } from "../environments/environment";
 import {AuthenticationModule} from "./authentication/authentication.module";
 import {HttpClientModule} from "@angular/common/http";
+import { ApplicationsComponent } from "./views/admin/applications/applications.component";
+import { CardApplicationComponent } from "./components/cards/card-application/card-application.component";
 
 @NgModule({
     declarations: [
@@ -66,8 +68,10 @@ import {HttpClientModule} from "@angular/common/http";
         IndexNavbarComponent,
         AdminComponent,
         ProfileComponent,
-        TablesComponent,
+        UsersComponent,
         IndexComponent,
+        ApplicationsComponent,
+        CardApplicationComponent,
     ],
     imports: [
         BrowserModule,
