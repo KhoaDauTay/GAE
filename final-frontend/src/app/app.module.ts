@@ -42,8 +42,7 @@ import { AkitaNgRouterStoreModule } from "@datorama/akita-ng-router-store";
 import { environment } from "../environments/environment";
 import {AuthenticationModule} from "./authentication/authentication.module";
 import {HttpClientModule} from "@angular/common/http";
-import { ApplicationsComponent } from "./views/admin/applications/applications.component";
-import { CardApplicationComponent } from "./components/cards/card-application/card-application.component";
+import {ApplicationModule} from "./applications/application.module";
 
 @NgModule({
     declarations: [
@@ -70,13 +69,12 @@ import { CardApplicationComponent } from "./components/cards/card-application/ca
         ProfileComponent,
         UsersComponent,
         IndexComponent,
-        ApplicationsComponent,
-        CardApplicationComponent,
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         AuthenticationModule,
+        ApplicationModule,
         AppRoutingModule,
         environment.production ? [] : AkitaNgDevtools.forRoot(),
         AkitaNgRouterStoreModule
