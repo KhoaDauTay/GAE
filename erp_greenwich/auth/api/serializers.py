@@ -35,7 +35,6 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             "redirect_uris",
             "client_type",
             "authorization_grant_type",
-            "user",
             "scopes",
         ]
 
