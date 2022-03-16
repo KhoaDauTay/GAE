@@ -135,7 +135,7 @@ certificatesResolvers:
 http:
   routers:
     dashboard:
-      rule: Host(`gae-gw.systems`) && PathPrefix(`/dashboard`))
+      rule: "Host(`gae-gw.systems`) && PathPrefix(`/dashboard`))"
       service: api@internal
       entryPoints:
         - traefik
