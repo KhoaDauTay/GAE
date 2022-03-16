@@ -35,7 +35,7 @@
                 "scope": "users:update"
             },
             {
-                "description": "Me Users",
+                "description": "See information Users",
                 "scope": "users:me"
             },
             {
