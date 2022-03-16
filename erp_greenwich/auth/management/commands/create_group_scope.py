@@ -36,4 +36,4 @@ class Command(BaseCommand):
         with open(json_path, "w+", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4, sort_keys=True)
 
-        self.stdout.write(self.style.SUCCESS("Successfully create permissions"))
+        self.stdout.write(self.style.SUCCESS("Successfully create group permission"))
