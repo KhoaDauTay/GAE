@@ -161,7 +161,7 @@ class BaseViewSet(ModelViewSet):
             with transaction.atomic():
                 return_obj = self.perform_create(serializer)
             self.notify(return_obj, **kwargs)
-            return Response(return_obj)
+            return Response(self.serializer_class(return_obj).data)
         return self.failure_response()
 
     def update(self, request, *args, **kwargs):
@@ -182,7 +182,7 @@ class BaseViewSet(ModelViewSet):
         if serializer.is_valid(raise_exception=True):
             return_obj = self.perform_update(serializer)
             self.notify(return_obj, **kwargs)
-            return Response(return_obj)
+            return Response(self.serializer_class(return_obj).data)
         return self.failure_response()
 
     def create_nested_model(self, request, *args, **kwargs):
@@ -203,5 +203,5 @@ class BaseViewSet(ModelViewSet):
         if serializer.is_valid(raise_exception=True):
             return_obj = self.perform_create(serializer, obj=obj)
             self.notify(return_obj, **kwargs)
-            return Response(return_obj)
+            return Response(self.serializer_class(return_obj).data)
         return self.failure_response()
