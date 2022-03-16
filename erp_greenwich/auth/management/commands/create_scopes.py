@@ -11,15 +11,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         data = {}
-        for scope in get_api_actions():
+        scopes = get_api_actions().get("scopes")
+        for scope in scopes:
             """
             Create description of scope
             """
             name_scope = scope.split(":")
             basename = name_scope[0].replace("_", " ")  # name of scope: album
             action_name = name_scope[1].replace("_", " ")  # name of action: create
-            description = f"{action_name.title()} object of {basename.title()}"
-
+            description = f"{action_name.title()} {basename.title()}"
             data.update({scope: description})
         json_path = settings.SCOPES_JSON_PATH
         with open(json_path, "w+", encoding="utf-8") as f:

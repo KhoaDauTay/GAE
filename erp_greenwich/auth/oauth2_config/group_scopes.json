@@ -1,0 +1,60 @@
+[
+    {
+        "children": [
+            {
+                "description": "Create Applications",
+                "scope": "applications:create"
+            },
+            {
+                "description": "Get Roles Applications",
+                "scope": "applications:get_roles"
+            },
+            {
+                "description": "Retrieve Applications",
+                "scope": "applications:retrieve"
+            },
+            {
+                "description": "Destroy Applications",
+                "scope": "applications:destroy"
+            },
+            {
+                "description": "List Applications",
+                "scope": "applications:list"
+            },
+            {
+                "description": "Update Applications",
+                "scope": "applications:update"
+            }
+        ],
+        "label": "Applications"
+    },
+    {
+        "children": [
+            {
+                "description": "Update Users",
+                "scope": "users:update"
+            },
+            {
+                "description": "Me Users",
+                "scope": "users:me"
+            },
+            {
+                "description": "Create Users",
+                "scope": "users:create"
+            },
+            {
+                "description": "Destroy Users",
+                "scope": "users:destroy"
+            },
+            {
+                "description": "Retrieve Users",
+                "scope": "users:retrieve"
+            },
+            {
+                "description": "List Users",
+                "scope": "users:list"
+            }
+        ],
+        "label": "Users"
+    }
+]

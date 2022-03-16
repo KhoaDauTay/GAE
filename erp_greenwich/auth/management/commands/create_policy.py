@@ -42,6 +42,12 @@ class Command(BaseCommand):
                     v1="applications:destroy",
                     v2="DELETE",
                 ),
+                CasbinRule(
+                    ptype="p",
+                    v0="applications:get_roles",
+                    v1="applications:get_roles",
+                    v2="GET",
+                ),
                 CasbinRule(ptype="g", v0="student", v1="users:list"),
                 CasbinRule(ptype="g", v0="student", v1="users:me"),
                 CasbinRule(ptype="g", v0="student", v1="users:retrieve"),

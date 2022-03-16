@@ -1,13 +1,14 @@
 {
-    "applications:create": "Create object of Applications",
-    "applications:destroy": "Destroy object of Applications",
-    "applications:list": "List object of Applications",
-    "applications:retrieve": "Retrieve object of Applications",
-    "applications:update": "Update object of Applications",
-    "users:create": "Create object of Users",
-    "users:destroy": "Destroy object of Users",
-    "users:list": "List object of Users",
+    "applications:create": "Create Applications",
+    "applications:destroy": "Destroy Applications",
+    "applications:get_roles": "Get Roles Applications",
+    "applications:list": "List Applications",
+    "applications:retrieve": "Retrieve Applications",
+    "applications:update": "Update Applications",
+    "users:create": "Create Users",
+    "users:destroy": "Destroy Users",
+    "users:list": "List Users",
     "users:me": "See my information",
-    "users:retrieve": "Retrieve object of Users",
-    "users:update": "Update object of Users"
+    "users:retrieve": "Retrieve Users",
+    "users:update": "Update Users"
 }

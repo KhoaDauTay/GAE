@@ -421,6 +421,7 @@ TIME_INPUT_FORMATS = (
 
 EMAIL_BLACKLIST_DOMAIN = ["admin@gmail.com"]
 SCOPES_JSON_PATH = str(APPS_DIR / "auth/oauth2_config/scopes.json")
+GROUP_SCOPES_JSON_PATH = str(APPS_DIR / "auth/oauth2_config/group_scopes.json")
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=10),

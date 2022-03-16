@@ -1,7 +1,7 @@
 import ast
 
 
-def get_api_actions() -> list:
+def get_api_actions() -> dict:
     from rest_framework.routers import SimpleRouter
 
     from config import api_router
@@ -12,6 +12,7 @@ def get_api_actions() -> list:
     registry = api_router.router.registry
     res_dict = {r[1].__name__: r[2] for r in registry}
     api_actions = []
+    labels = []
     for res in registry:
         if IsAuthenticatedOrTokenPermissionWithAction in res[1].permission_classes:
             router = SimpleRouter()
@@ -22,11 +23,14 @@ def get_api_actions() -> list:
             distinct_action_list = list(set(action_list))
             distinct_action_list.remove("partial_update")
             basename = res_dict.get(res[1].__name__)
+            labels.append(str(basename).title())
             api_actions.extend(
                 [f"{basename}:{action}" for action in distinct_action_list]
             )
     api_actions = list(set(api_actions))
-    return api_actions
+    labels = list(set(labels))
+    context = {"scopes": api_actions, "labels": labels}
+    return context
 
 
 def read_file_json(file_path: str) -> dict:

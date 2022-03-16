@@ -1,3 +1,6 @@
+from django.conf import settings
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from erp_greenwich.auth.api.serializers import (
@@ -6,6 +9,7 @@ from erp_greenwich.auth.api.serializers import (
     MyTokenObtainPairSerializer,
 )
 from erp_greenwich.core.views.base_view import BaseViewSet
+from erp_greenwich.utils.get_action import read_file_json
 
 
 class ApplicationViewSet(BaseViewSet):
@@ -15,6 +19,12 @@ class ApplicationViewSet(BaseViewSet):
         "update": ApplicationCreateSerializer,
         "create": ApplicationCreateSerializer,
     }
+
+    @action(detail=False, url_name="get_roles", url_path="get-roles", methods=["GET"])
+    def get_roles(self, request, *args, **kwargs):
+        scopes_path = settings.GROUP_SCOPES_JSON_PATH
+        scopes: dict = read_file_json(scopes_path)
+        return Response(scopes, status=200)
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
