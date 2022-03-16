@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from oauth2_provider.contrib.rest_framework import OAuth2Authentication
 from rest_framework import status
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -160,7 +161,7 @@ class BaseViewSet(ModelViewSet):
             with transaction.atomic():
                 return_obj = self.perform_create(serializer)
             self.notify(return_obj, **kwargs)
-            return self.success_response(return_obj)
+            return Response(return_obj)
         return self.failure_response()
 
     def update(self, request, *args, **kwargs):
@@ -181,7 +182,7 @@ class BaseViewSet(ModelViewSet):
         if serializer.is_valid(raise_exception=True):
             return_obj = self.perform_update(serializer)
             self.notify(return_obj, **kwargs)
-            return self.success_response(return_obj)
+            return Response(return_obj)
         return self.failure_response()
 
     def create_nested_model(self, request, *args, **kwargs):
@@ -202,5 +203,5 @@ class BaseViewSet(ModelViewSet):
         if serializer.is_valid(raise_exception=True):
             return_obj = self.perform_create(serializer, obj=obj)
             self.notify(return_obj, **kwargs)
-            return self.success_response(return_obj)
+            return Response(return_obj)
         return self.failure_response()
