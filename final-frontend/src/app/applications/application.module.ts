@@ -1,11 +1,12 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {ApplicationsComponent} from "./applications.component";
 import {CardApplicationComponent} from "./card-application/card-application.component";
 import {ApplicationDropdownComponent} from "./application-dropdown/application-dropdown.component";
 import {ApplicationSettingComponent} from "./application-setting/application-setting.component";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -18,9 +19,11 @@ import {ApplicationSettingComponent} from "./application-setting/application-set
     ApplicationsComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
+    NgSelectModule,
   ]
 })
 export class ApplicationModule { }

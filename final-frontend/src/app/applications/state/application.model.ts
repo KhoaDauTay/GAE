@@ -1,5 +1,5 @@
 export interface Application {
-  id: number | string;
+  id: number;
   client_id: string;
   redirect_uris: string;
   client_type: string;

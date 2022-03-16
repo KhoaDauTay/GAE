@@ -1,4 +1,4 @@
-<div
+<form [formGroup]="applicationForm" (ngSubmit)="onSubmit()"
   class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0"
 >
   <div class="rounded-t bg-white mb-0 px-6 py-6">
@@ -6,14 +6,14 @@
       <h6 class="text-blueGray-700 text-xl font-bold">Application</h6>
       <button
         class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-        type="button"
+        type="submit"
       >
         Update
       </button>
     </div>
   </div>
   <div class="flex-auto px-4 lg:px-10 py-10 pt-0" *ngIf="application">
-    <form>
+    <div>
       <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
         Application Information
       </h6>
@@ -26,6 +26,7 @@
               Name
             </label>
             <input
+              id="name" name="name" formControlName="name"
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
               value="{{application.name}}"
@@ -67,11 +68,16 @@
             >
               Authorization grant type
             </label>
-            <input
-              type="text"
-              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="{{application.authorization_grant_type}}"
-            />
+            <select
+              class="px-2 py-2 rounded-full"
+              (change)="changeGrantType($event)"
+              id="authorization_grant_type" name="authorization_grant_type" formControlName="authorization_grant_type"
+            >
+              <option value="{{defaultGrantType}}">{{defaultGrantType}}</option>
+              <option *ngFor="let grantType of grantTypes" [ngValue]="grantType">
+                {{ grantType }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
@@ -90,6 +96,7 @@
               Redirect uris
             </label>
             <input
+              id="redirect_uris" name="redirect_uris" formControlName="redirect_uris"
               type="text"
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
               value="{{application.redirect_uris}}"
@@ -103,11 +110,16 @@
             >
               Client type
             </label>
-            <input
-              type="text"
-              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              value="{{application.client_type}}"
-            />
+            <select
+              formControlName="client_type"
+              class="px-2 py-2 rounded-full"
+              (change)="changeClientType($event)"
+            >
+              <option value="{{defaultClientType}}">{{defaultClientType}}</option>
+              <option *ngFor="let clientType of clientTypes" [ngValue]="clientType">
+                {{ clientType }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
@@ -125,17 +137,25 @@
             >
               Scopes
             </label>
-            <textarea
-              type="text"
-              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-              rows="4"
-              [value]="application.scopes"
+            <ng-select
+              [items]="scopes"
+              bindLabel="description"
+              bindValue="scope"
+              groupBy="children"
+              [multiple]="true"
+              [(ngModel)]="selectedScopes"
+              [ngModelOptions]="{standalone: true}"
             >
-                </textarea
-                >
+              <ng-template ng-optgroup-tmp let-item="item">
+                {{item.label}}
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item">
+                {{item.description}}
+              </ng-template>
+            </ng-select>
           </div>
         </div>
       </div>
-    </form>
+    </div>
   </div>
-</div>
+</form>
