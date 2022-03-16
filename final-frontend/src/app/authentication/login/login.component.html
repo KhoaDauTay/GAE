@@ -27,7 +27,7 @@
                     <label
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     >
-                      Email
+                      Username
                     </label>
                     <input
                       type="text"
@@ -35,6 +35,9 @@
                       placeholder="Username"
                       formControlName ="username" id="username"
                     />
+                    <div class="text-red-600">
+                      <span *ngIf="loginForm.get('username').hasError('required')">* Username is required</span>
+                    </div>
                   </div>
 
                   <div class="relative w-full mb-3">
@@ -49,6 +52,9 @@
                       placeholder="Password"
                       formControlName ="password" id="password"
                     />
+                    <div class="text-red-600">
+                      <span *ngIf="loginForm.get('password').hasError('required')">* Password is required</span>
+                    </div>
                   </div>
                   <div>
                     <label class="inline-flex items-center cursor-pointer">

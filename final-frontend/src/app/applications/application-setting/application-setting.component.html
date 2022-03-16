@@ -5,8 +5,10 @@
     <div class="text-center flex justify-between">
       <h6 class="text-blueGray-700 text-xl font-bold">Application</h6>
       <button
-        class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        class="bg-red-600 active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
         type="submit"
+        [disabled]="applicationForm.invalid"
+        [ngClass]="applicationForm.invalid ? 'text-gray': 'text-white'"
       >
         Update
       </button>
@@ -31,6 +33,9 @@
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
               value="{{application.name}}"
             />
+            <div class="text-red-600">
+              <span *ngIf="applicationForm.get('name').hasError('required')">* Name is required</span>
+            </div>
           </div>
         </div>
         <div class="w-full lg:w-6/12 px-4">
@@ -101,6 +106,9 @@
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
               value="{{application.redirect_uris}}"
             />
+            <div class="text-red-600">
+              <span *ngIf="applicationForm.get('redirect_uris').hasError('required')">* Name is required</span>
+            </div>
           </div>
         </div>
         <div class="w-full lg:w-4/12 px-4">

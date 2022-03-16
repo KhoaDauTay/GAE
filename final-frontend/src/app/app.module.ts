@@ -43,6 +43,7 @@ import { environment } from "../environments/environment";
 import {AuthenticationModule} from "./authentication/authentication.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ApplicationModule} from "./applications/application.module";
+import {AlertModule} from "./alert";
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import {ApplicationModule} from "./applications/application.module";
         HttpClientModule,
         AuthenticationModule,
         ApplicationModule,
+        AlertModule,
         AppRoutingModule,
         environment.production ? [] : AkitaNgDevtools.forRoot(),
         AkitaNgRouterStoreModule

@@ -3,23 +3,29 @@ import {ActivatedRoute} from "@angular/router";
 import {ApplicationsQuery} from "../state/applications.query";
 import {ApplicationsService} from "../state/applications.service";
 import {Application} from "../state/application.model";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
+import {AlertService} from "../../alert";
 
 @Component({
   selector: "app-application-setting",
   templateUrl: "./application-setting.component.html",
 })
 export class ApplicationSettingComponent implements OnInit {
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
   constructor(
     private route: ActivatedRoute,
     private applicationQuery: ApplicationsQuery,
     private applicationService: ApplicationsService,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    public alertService: AlertService
   ) {
   }
   applicationForm = this.formBuilder.group({
-    name: [""],
-    redirect_uris: [""],
+    name: ["", Validators.required],
+    redirect_uris: ["", Validators.required],
     client_type: [""],
     authorization_grant_type: [""],
     scopes: [""]
@@ -61,8 +67,9 @@ export class ApplicationSettingComponent implements OnInit {
     return this.applicationForm.get("client_type");
   }
   onSubmit() {
-    if (!this.applicationForm.valid) {
-      alert("Please enter required login data Invalid Input");
+    if (this.applicationForm.invalid) {
+      console.log(this.applicationForm.invalid)
+      this.alertService.error(`Please check your input`, this.options);
       return;
     }
     this.applicationForm.patchValue(
@@ -72,7 +79,8 @@ export class ApplicationSettingComponent implements OnInit {
     );
     const applicationUpdate: Partial<Application> = this.applicationForm.value;
     this.applicationService.update(this.applicationId, applicationUpdate).subscribe(
-      (value => {console.log(value)})
+      (() => {
+        this.alertService.success(`${this.applicationForm.get("name").value.toString()} update successfully!!!`, this.options)})
     )
   }
 
