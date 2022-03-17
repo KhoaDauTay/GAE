@@ -35,9 +35,18 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             "redirect_uris",
             "client_type",
             "authorization_grant_type",
-            "scopes",
         ]
 
+class ApplicationUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Application
+        fields = [
+            "name",
+            "redirect_uris",
+            "client_type",
+            "authorization_grant_type",
+            "scopes",
+        ]
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
