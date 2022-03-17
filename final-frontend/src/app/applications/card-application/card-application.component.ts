@@ -22,13 +22,11 @@ export class CardApplicationComponent implements OnInit {
   constructor(
     private applicationService: ApplicationsService,
     private applicationQuery: ApplicationsQuery,
-    private applicationStore: ApplicationsStore,
   ) {}
 
   ngOnInit(): void {
     this.applicationService.get().subscribe();
     this.applications$ = this.applicationQuery.selectAll();
-    console.log(this.applicationStore.getValue());
   }
 
 }

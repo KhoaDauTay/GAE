@@ -68,7 +68,6 @@ export class ApplicationSettingComponent implements OnInit {
   }
   onSubmit() {
     if (this.applicationForm.invalid) {
-      console.log(this.applicationForm.invalid)
       this.alertService.error(`Please check your input`, this.options);
       return;
     }

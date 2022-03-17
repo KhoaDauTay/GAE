@@ -17,6 +17,7 @@ import { IndexComponent } from "./views/index/index.component";
 import {AuthenticationGuard} from "./authentication/services";
 import {ApplicationsComponent} from "./applications/applications.component";
 import {ApplicationSettingComponent} from "./applications/application-setting/application-setting.component";
+import {ApplicationCreateComponent} from "./applications/application-create/application-create.component";
 
 const routes: Routes = [
   // admin views
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: "profile", component: ProfileComponent },
       { path: "users", component: UsersComponent },
       { path: "applications", component: ApplicationsComponent },
+      { path: "applications/create", component: ApplicationCreateComponent },
       { path: "applications/:id", component: ApplicationSettingComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
