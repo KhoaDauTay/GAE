@@ -5,7 +5,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from erp_greenwich.auth.api.serializers import (
     ApplicationCreateSerializer,
-    ApplicationUpdateSerializer,
     ApplicationSerializer,
     MyTokenObtainPairSerializer,
 )
@@ -17,7 +16,7 @@ class ApplicationViewSet(BaseViewSet):
     serializer_class = ApplicationSerializer
     serializer_map = {
         "retrieve": ApplicationSerializer,
-        "update": ApplicationUpdateSerializer,
+        "update": ApplicationCreateSerializer,
         "create": ApplicationCreateSerializer,
     }
 
