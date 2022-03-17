@@ -1,11 +1,11 @@
 import {Component, AfterViewInit, ViewChild, ElementRef, OnInit} from "@angular/core";
 import { createPopper } from "@popperjs/core";
-import {AuthenticationService} from "../../../authentication/services";
-import {AuthenticationQuery} from "../../../authentication/state/authentication.query";
+import {AuthenticationService} from "../services";
+import {AuthenticationQuery} from "../state/authentication.query";
 import {Router} from "@angular/router";
-import {UsersQuery} from "../../../authentication/state/users/users.query";
-import {User} from "../../../authentication/state/users/user.model";
-import {environment} from "../../../../environments/environment";
+import {UsersQuery} from "../state/users/users.query";
+import {User} from "../state/users/user.model";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: "app-user-dropdown",

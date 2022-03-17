@@ -6,8 +6,8 @@ import { AdminComponent } from "./layouts/admin/admin.component";
 
 // admin views
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
-import { ProfileComponent } from "./views/admin/profile/profile.component";
-import {UsersComponent} from "./views/admin/tables/tables.component";
+import { ProfileComponent } from "./authentication/profile/profile.component";
+import {UsersComponent} from "./views/admin/users/users.component";
 
 // auth views
 import { LoginComponent } from "./authentication/login/login.component";

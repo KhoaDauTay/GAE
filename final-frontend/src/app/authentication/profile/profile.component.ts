@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import {User} from "../../../authentication/state/users/user.model";
-import {AuthenticationQuery} from "../../../authentication/state/authentication.query";
-import {UsersQuery} from "../../../authentication/state/users/users.query";
-import {environment} from "../../../../environments/environment";
+import {User} from "../state/users/user.model";
+import {AuthenticationQuery} from "../state/authentication.query";
+import {UsersQuery} from "../state/users/users.query";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: "app-profile",

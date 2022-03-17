@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {User} from "../../../authentication/state/users/user.model";
+import {User} from "../state/users/user.model";
 
 @Component({
   selector: "app-card-profile",
