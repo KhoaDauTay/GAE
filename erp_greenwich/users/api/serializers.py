@@ -6,7 +6,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
 from erp_greenwich.core.validation import APIValidationError
-from erp_greenwich.users.models import Client
+from erp_greenwich.users.models import Client, Role
 from erp_greenwich.utils.client import get_client
 
 User = get_user_model()
@@ -81,4 +81,41 @@ class UserCreateSerializer(serializers.ModelSerializer):
         user = User.objects.create(**validated_data)
         user.set_password(password)
         user.save(update_fields=["password"])
+        return user
+
+
+class UserInviteSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )
+    name = serializers.CharField(max_length=50)
+    role = serializers.CharField(max_length=50)
+
+    class Meta:
+        model = User
+        fields = ["email", "name", "role"]
+
+    @staticmethod
+    def validate_email(email):
+        blacklist_domain = list(filter(bool, settings.EMAIL_BLACKLIST_DOMAIN))
+        if len(blacklist_domain) > 0:
+            blacklist_regex = re.compile(r"|".join(blacklist_domain))
+            if blacklist_regex.search(email):
+                raise APIValidationError({"email": "Email format is not supported"})
+        return email
+
+    def create(self, validated_data):
+        data: dict = validated_data
+        data["username"] = validated_data.get("email")
+        data["email"] = validated_data.get("email")
+        data["is_active"] = True
+        role = validated_data.get("role")
+        role_obj = Role.objects.get(name=role)
+        if role_obj:
+            data.pop("role")
+        user = User.objects.create(**data)
+        user.role = role_obj
+        user.avatar = "avatar.png"
+        user.set_password("khoa0305")
+        user.save(update_fields=["role", "password", "avatar"])
         return user

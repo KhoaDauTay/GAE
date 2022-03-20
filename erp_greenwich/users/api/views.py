@@ -4,7 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from ...core.views.base_view import BaseViewSet
-from .serializers import UserCreateSerializer, UserSerializer
+from ..tasks import send_new_user_notification
+from .serializers import UserCreateSerializer, UserInviteSerializer, UserSerializer
 
 User = get_user_model()
 
@@ -16,9 +17,18 @@ class UserViewSet(BaseViewSet):
         "me": UserSerializer,
         "retrieve": UserSerializer,
         "create": UserCreateSerializer,
+        "invite": UserInviteSerializer,
     }
 
     @action(detail=False)
     def me(self, request):
         serializer = UserSerializer(request.user, context={"request": request})
         return Response(status=status.HTTP_200_OK, data=serializer.data)
+
+    @staticmethod
+    def notify_for_invite(obj: User, **kwargs):
+        send_new_user_notification.delay(user_id=obj.id)
+
+    @action(detail=False, methods=["POST"])
+    def invite(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
