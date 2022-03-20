@@ -34,7 +34,7 @@ def send_new_user_notification(user_id):
         "username": user.username,
         "email": user.email,
         "name": user.name,
-        "link": "https://gae-gw/accounts/login/",
+        "link": "https://gae-gw.systems/accounts/login/",
     }
 
     template = "account/invite_user.html"

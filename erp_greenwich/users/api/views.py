@@ -29,6 +29,6 @@ class UserViewSet(BaseViewSet):
     def notify_for_invite(obj: User, **kwargs):
         send_new_user_notification.delay(user_id=obj.id)
 
-    @action(detail=False, methods=["POST"])
+    @action(detail=False, methods=["POST"], url_name="invite", url_path="invite")
     def invite(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)

@@ -2,12 +2,41 @@
     {
         "children": [
             {
-                "description": "Create Applications",
-                "scope": "applications:create"
+                "description": "Update Users",
+                "scope": "users:update"
             },
             {
-                "description": "Get Roles Applications",
-                "scope": "applications:get_roles"
+                "description": "Invite Users",
+                "scope": "users:invite"
+            },
+            {
+                "description": "List Users",
+                "scope": "users:list"
+            },
+            {
+                "description": "Create Users",
+                "scope": "users:create"
+            },
+            {
+                "description": "Retrieve Users",
+                "scope": "users:retrieve"
+            },
+            {
+                "description": "Destroy Users",
+                "scope": "users:destroy"
+            },
+            {
+                "description": "Me Users",
+                "scope": "users:me"
+            }
+        ],
+        "label": "Users"
+    },
+    {
+        "children": [
+            {
+                "description": "List Applications",
+                "scope": "applications:list"
             },
             {
                 "description": "Retrieve Applications",
@@ -18,43 +47,18 @@
                 "scope": "applications:destroy"
             },
             {
-                "description": "List Applications",
-                "scope": "applications:list"
+                "description": "Get Roles Applications",
+                "scope": "applications:get_roles"
             },
             {
                 "description": "Update Applications",
                 "scope": "applications:update"
+            },
+            {
+                "description": "Create Applications",
+                "scope": "applications:create"
             }
         ],
         "label": "Applications"
-    },
-    {
-        "children": [
-            {
-                "description": "Update Users",
-                "scope": "users:update"
-            },
-            {
-                "description": "See information Users",
-                "scope": "users:me"
-            },
-            {
-                "description": "Create Users",
-                "scope": "users:create"
-            },
-            {
-                "description": "Destroy Users",
-                "scope": "users:destroy"
-            },
-            {
-                "description": "Retrieve Users",
-                "scope": "users:retrieve"
-            },
-            {
-                "description": "List Users",
-                "scope": "users:list"
-            }
-        ],
-        "label": "Users"
     }
 ]

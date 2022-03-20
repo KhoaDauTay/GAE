@@ -13,7 +13,6 @@ class Command(BaseCommand):
         data = []
         scopes = get_api_actions().get("scopes")
         labels = get_api_actions().get("labels")
-        print(labels)
         for label in labels:
             data.append({"label": label, "children": []})
         for child in data:
