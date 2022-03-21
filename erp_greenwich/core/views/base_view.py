@@ -161,7 +161,7 @@ class BaseViewSet(ModelViewSet):
             with transaction.atomic():
                 return_obj = self.perform_create(serializer)
             self.notify(return_obj, **kwargs)
-            return self.success_response(return_obj)
+            return Response(self.serializer_class(return_obj).data)
         return self.failure_response()
 
     def update(self, request, *args, **kwargs):
