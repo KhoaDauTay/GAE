@@ -8,7 +8,6 @@ import {ApplicationDropdownComponent} from "./application-dropdown/application-d
 import {ApplicationSettingComponent} from "./application-setting/application-setting.component";
 import {NgSelectModule} from "@ng-select/ng-select";
 import { ApplicationCreateComponent } from "./application-create/application-create.component";
-import { ApplicationDeleteComponent } from "./application-delete/application-delete.component";
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { ApplicationDeleteComponent } from "./application-delete/application-del
     ApplicationDropdownComponent,
     ApplicationSettingComponent,
     ApplicationCreateComponent,
-    ApplicationDeleteComponent,
   ],
   exports: [
     ApplicationsComponent

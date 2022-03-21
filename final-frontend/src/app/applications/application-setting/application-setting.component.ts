@@ -39,9 +39,9 @@ export class ApplicationSettingComponent implements OnInit {
   selectedScopes = [];
   scopes: any;
   ngOnInit(): void {
+    this.applicationId = this.route.snapshot.paramMap.get("id");
     this.applicationService.get(this.applicationId).subscribe(
       () => {
-        this.applicationId = this.route.snapshot.paramMap.get("id");
         this.application = this.applicationQuery.getEntity(this.applicationId);
         this.defaultGrantType = this.application.authorization_grant_type;
         this.grantTypes.forEach((grantType,index)=>{

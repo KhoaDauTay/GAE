@@ -3,7 +3,7 @@
   type="button"
   (click)="toggleModal()"
 >
-  Create
+  Invite
 </button>
 <div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
   <div class="relative w-auto my-6 mx-auto max-w-3xl">
@@ -12,7 +12,7 @@
       <!--header-->
       <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
         <h3 class="text-3xl font-semibold">
-          Create User
+          Invite User
         </h3>
         <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
           <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
@@ -20,7 +20,77 @@
           </span>
         </button>
       </div>
-
+      <form [formGroup]="inviteForm" (ngSubmit)="onSubmit()">
+        <div class="relative p-6 flex-auto">
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                >
+                  Name
+                </label>
+                <input
+                  id="name" name="name" formControlName="name"
+                  type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                />
+                <div class="text-red-600">
+                  <span *ngIf="inviteForm.get('name').hasError('required')">* Name is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                >
+                  Role
+                </label>
+                <select
+                  class="px-2 py-2 rounded-full"
+                  (change)="changeRole($event)"
+                  id="role" name="role" formControlName="role"
+                >
+                  <option value="{{defaultRole}}">{{defaultRole}}</option>
+                  <option *ngFor="let role of Roles" [ngValue]="role">
+                    {{ role }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                >
+                  Email
+                </label>
+                <input
+                  id="email" name="email" formControlName="email"
+                  type="email"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                />
+                <div class="text-red-600">
+                  <span *ngIf="inviteForm.get('email').hasError('required')">* Email is required</span>
+                  <span *ngIf="inviteForm.get('email').hasError('email')">* Email type is invalid</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--footer-->
+        <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+          <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+            Close
+          </button>
+          <button class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">
+            Invite
+          </button>
+        </div>
+      </form>
       <!--body-->
     </div>
   </div>

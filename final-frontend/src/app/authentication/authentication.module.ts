@@ -15,6 +15,7 @@ import {UserDropdownComponent} from "./user-dropdown/user-dropdown.component";
 import {TableDropdownComponent} from "./table-dropdown/table-dropdown.component";
 import {CardSettingsComponent} from "./card-settings/card-settings.component";
 import { UserCreateComponent } from "./user-create/user-create.component";
+import { UserDetailComponent } from "./user-detail/user-detail.component";
 
 
 
@@ -31,6 +32,7 @@ import { UserCreateComponent } from "./user-create/user-create.component";
     CardProfileComponent,
     CardSettingsComponent,
     UserCreateComponent,
+    UserDetailComponent,
   ],
   exports: [
     LoginComponent,
