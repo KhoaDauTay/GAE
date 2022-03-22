@@ -84,6 +84,39 @@ class UserCreateSerializer(serializers.ModelSerializer):
         return user
 
 
+class UserUpdateSerializer(serializers.ModelSerializer):
+    role = serializers.CharField(max_length=20)
+    client = ClientSerializer()
+
+    class Meta:
+        model = User
+        fields = [
+            "name",
+            "role",
+            "first_name",
+            "last_name",
+            "client",
+        ]
+
+    def update(self, instance: User, validated_data):
+        instance.name = validated_data.get("name")
+        instance.first_name = validated_data.get("first_name")
+        instance.last_name = validated_data.get("last_name")
+
+        role = validated_data.pop("role")
+        role_obj = Role.objects.get(name=role)
+        instance.role = role_obj
+        client_obj: Client = Client.objects.get(user=instance)
+        client = validated_data.pop("client")
+        client_obj.address = client.get("address")
+        client_obj.city = client.get("city")
+        client_obj.country = client.get("country")
+        client_obj.postal_code = client.get("postal_code")
+        client_obj.about_me = client.get("about_me")
+        client_obj.save()
+        return instance
+
+
 class UserInviteSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         validators=[UniqueValidator(queryset=User.objects.all())]
@@ -117,5 +150,14 @@ class UserInviteSerializer(serializers.ModelSerializer):
         user.role = role_obj
         user.avatar = "avatar.png"
         user.set_password("khoa0305")
+        client = Client.objects.create(
+            user=user,
+            address="06 Hoa Nam 3",
+            city="Da Nang",
+            country="Viet Nam",
+            about_me="Example about me",
+            postal_code="55000",
+        )
+        client.save()
         user.save(update_fields=["role", "password", "avatar"])
         return user

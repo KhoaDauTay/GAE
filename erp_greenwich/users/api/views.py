@@ -5,7 +5,12 @@ from rest_framework.response import Response
 
 from ...core.views.base_view import BaseViewSet
 from ..tasks import send_new_user_notification
-from .serializers import UserCreateSerializer, UserInviteSerializer, UserSerializer
+from .serializers import (
+    UserCreateSerializer,
+    UserInviteSerializer,
+    UserSerializer,
+    UserUpdateSerializer,
+)
 
 User = get_user_model()
 
@@ -17,6 +22,7 @@ class UserViewSet(BaseViewSet):
         "me": UserSerializer,
         "retrieve": UserSerializer,
         "create": UserCreateSerializer,
+        "update": UserUpdateSerializer,
         "invite": UserInviteSerializer,
     }
 
