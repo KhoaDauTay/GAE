@@ -2,16 +2,41 @@
     {
         "children": [
             {
-                "description": "Update Users",
-                "scope": "users:update"
+                "description": "Create Roles",
+                "scope": "roles:create"
             },
             {
-                "description": "Invite Users",
-                "scope": "users:invite"
+                "description": "List Roles",
+                "scope": "roles:list"
             },
+            {
+                "description": "Retrieve Roles",
+                "scope": "roles:retrieve"
+            },
+            {
+                "description": "Update Roles",
+                "scope": "roles:update"
+            },
+            {
+                "description": "Destroy Roles",
+                "scope": "roles:destroy"
+            },
+            {
+                "description": "Add Rule Roles",
+                "scope": "roles:add_rule"
+            }
+        ],
+        "label": "Roles"
+    },
+    {
+        "children": [
             {
                 "description": "List Users",
                 "scope": "users:list"
+            },
+            {
+                "description": "Me Users",
+                "scope": "users:me"
             },
             {
                 "description": "Create Users",
@@ -22,12 +47,16 @@
                 "scope": "users:retrieve"
             },
             {
-                "description": "Destroy Users",
-                "scope": "users:destroy"
+                "description": "Invite Users",
+                "scope": "users:invite"
             },
             {
-                "description": "Me Users",
-                "scope": "users:me"
+                "description": "Update Users",
+                "scope": "users:update"
+            },
+            {
+                "description": "Destroy Users",
+                "scope": "users:destroy"
             }
         ],
         "label": "Users"
@@ -35,12 +64,12 @@
     {
         "children": [
             {
-                "description": "List Applications",
-                "scope": "applications:list"
+                "description": "Update Applications",
+                "scope": "applications:update"
             },
             {
-                "description": "Retrieve Applications",
-                "scope": "applications:retrieve"
+                "description": "List Applications",
+                "scope": "applications:list"
             },
             {
                 "description": "Destroy Applications",
@@ -51,8 +80,8 @@
                 "scope": "applications:get_roles"
             },
             {
-                "description": "Update Applications",
-                "scope": "applications:update"
+                "description": "Retrieve Applications",
+                "scope": "applications:retrieve"
             },
             {
                 "description": "Create Applications",

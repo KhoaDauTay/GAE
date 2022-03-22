@@ -51,9 +51,12 @@ class TokenPermissionWithAction(BasePermission):
         # Customize it based on your authentication method.
         role = request.user.role.name
         # RBAC
+        split_scope = scope.split(":")
+        basename = split_scope[0]
+        action = split_scope[1]
         sub = role.lower()
-        obj = scope
-        act = request.method
+        obj = basename
+        act = action
         return self.enforcer.enforce(sub, obj, act)
 
     def require_permission(
@@ -91,12 +94,16 @@ class JWTTokenPermissionWithAction(BasePermission):
         # Permission passed, go to next module.
         return True
 
-    def check_permission(self, role, scope, request):
+    def check_permission(self, role, scope: str, request):
         # Customize it based on your authentication method.
         # RBAC
+        # scope = users:me
+        split_scope = scope.split(":")
+        basename = split_scope[0]
+        action = split_scope[1]
         sub = role.lower()
-        obj = scope
-        act = request.method
+        obj = basename
+        act = action
         return self.enforcer.enforce(sub, obj, act)
 
     def require_permission(

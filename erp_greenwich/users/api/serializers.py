@@ -98,14 +98,25 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             "client",
         ]
 
+    def validate(self, data):
+        role = data.get("role")
+        try:
+            role_obj = Role.objects.get(name=role)
+            if role_obj:
+                return data
+        except Role.DoesNotExist:
+            raise APIValidationError({"role": "Role name doesn't exist"})
+
     def update(self, instance: User, validated_data):
+        # Update user
         instance.name = validated_data.get("name")
         instance.first_name = validated_data.get("first_name")
         instance.last_name = validated_data.get("last_name")
-
+        # Update role
         role = validated_data.pop("role")
         role_obj = Role.objects.get(name=role)
         instance.role = role_obj
+        # Update client
         client_obj: Client = Client.objects.get(user=instance)
         client = validated_data.pop("client")
         client_obj.address = client.get("address")

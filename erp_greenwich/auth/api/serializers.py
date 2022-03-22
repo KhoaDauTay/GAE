@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
+from ...users.models import Role
 from ..models import Application
 
 
@@ -52,4 +53,15 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
 
-# Create your views here.
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = [
+            "id",
+            "name",
+            "description",
+        ]
+
+
+class RuleUpdateSerializer(serializers.Serializer):
+    scopes = serializers.ListField(child=serializers.CharField(max_length=100))
