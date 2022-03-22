@@ -4,7 +4,6 @@ from django.contrib.auth.hashers import make_password
 from django.db import migrations
 
 
-
 def add_user(apps, schema_editor):
     User = apps.get_model(*settings.AUTH_USER_MODEL.split('.'))
     try:
@@ -13,6 +12,7 @@ def add_user(apps, schema_editor):
             email='admin@gmail.com',
             password=make_password('khoa0305'),
             name='admin',
+            avatar="avatar.png",
             is_superuser=True,
         )
         User.objects.bulk_create([
@@ -20,21 +20,25 @@ def add_user(apps, schema_editor):
                  email='student@gmail.com',
                  password=make_password('khoa0305'),
                  name='student',
+                 avatar="avatar.png",
                  ),
             User(username='staff',
                  email='staff@gmail.com',
                  password=make_password('khoa0305'),
                  name='staff',
+                 avatar="avatar.png",
                  ),
             User(username='security',
                  email='security@gmail.com',
                  password=make_password('khoa0305'),
                  name='security',
+                 avatar="avatar.png",
                  ),
             User(username='manager',
                  email='manager@gmail.com',
                  password=make_password('khoa0305'),
                  name='manager',
+                 avatar="avatar.png",
                  ),
         ])
     except Exception as e:
