@@ -125,6 +125,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         client_obj.postal_code = client.get("postal_code")
         client_obj.about_me = client.get("about_me")
         client_obj.save()
+        instance.save()
         return instance
 
 
