@@ -25,4 +25,7 @@ export class UserDetailComponent implements OnInit {
       }
     )
   }
+  changeValue(user: User){
+    this.user = user;
+  }
 }

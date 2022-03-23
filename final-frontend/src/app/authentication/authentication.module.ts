@@ -7,7 +7,6 @@ import {LoginComponent} from "./login/login.component";
 import {AuthNavbarComponent} from "../components/navbars/auth-navbar/auth-navbar.component";
 import {FooterSmallComponent} from "../components/footers/footer-small/footer-small.component";
 import {RouterModule} from "@angular/router";
-import { InviteUsersComponent } from "./invite-users/invite-users.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {CardUserComponent} from "./card-user/card-user.component";
 import {CardProfileComponent} from "./card-profile/card-profile.component";
@@ -26,7 +25,6 @@ import { UserDetailComponent } from "./user-detail/user-detail.component";
     LoginComponent,
     AuthNavbarComponent,
     FooterSmallComponent,
-    InviteUsersComponent,
     ProfileComponent,
     CardUserComponent,
     CardProfileComponent,
