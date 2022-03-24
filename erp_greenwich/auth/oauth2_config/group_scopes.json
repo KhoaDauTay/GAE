@@ -21,10 +21,6 @@
                 "description": "Destroy Roles",
                 "scope": "roles:destroy"
             },
-            {
-                "description": "Add Rule Roles",
-                "scope": "roles:add_rule"
-            }
         ],
         "label": "Roles"
     },

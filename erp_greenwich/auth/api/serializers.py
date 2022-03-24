@@ -1,4 +1,7 @@
+from casbin_adapter.models import CasbinRule
+from django.db import transaction
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from ...users.models import Role
@@ -54,14 +57,61 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class RoleSerializer(serializers.ModelSerializer):
+    scopes = serializers.SerializerMethodField()
+
     class Meta:
         model = Role
-        fields = [
-            "id",
-            "name",
-            "description",
-        ]
+        fields = ["id", "name", "description", "scopes"]
+
+    @staticmethod
+    def get_scopes(obj: Application):
+        if obj.name == "ADMIN":
+            rule_exist = (
+                CasbinRule.objects.filter(ptype="p")
+                .exclude(v0="admin")
+                .values_list("v0", flat=True)
+            )
+            return list(rule_exist)
+        rule_exist = CasbinRule.objects.filter(v0=obj.name.lower()).values_list(
+            "v1", flat=True
+        )
+        return list(rule_exist)
 
 
-class RuleUpdateSerializer(serializers.Serializer):
+class RuleUpdateSerializer(serializers.ModelSerializer):
     scopes = serializers.ListField(child=serializers.CharField(max_length=100))
+    name = serializers.CharField(
+        max_length=100, validators=[UniqueValidator(queryset=Role.objects.all())]
+    )
+
+    class Meta:
+        model = Role
+        fields = ["name", "description", "scopes"]
+
+    def update(self, instance: Role, validated_data):
+        # Update user
+        instance.name = validated_data.get("name")
+        instance.description = validated_data.get("description")
+        instance.save()
+        # Update role
+        with transaction.atomic():
+            rule_exist = CasbinRule.objects.filter(
+                v0=instance.name.lower()
+            ).values_list("v1", flat=True)
+            rule_new = validated_data.get("scopes")
+            # Change type to set:
+            rule_exist = set(list(rule_exist))
+            rule_new = set(rule_new)
+
+            # Compare
+            remove_rule = list(rule_exist.difference(rule_new))
+            add_rule = list(rule_new.difference(rule_exist))
+
+            CasbinRule.objects.filter(v1__in=remove_rule).delete()
+            for rule in add_rule:
+                CasbinRule.objects.create(
+                    ptype="g",
+                    v0=f"{instance.name.lower()}",
+                    v1=f"{rule}",
+                )
+        return instance

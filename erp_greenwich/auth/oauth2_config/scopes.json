@@ -5,7 +5,6 @@
     "applications:list": "List Applications",
     "applications:retrieve": "Retrieve Applications",
     "applications:update": "Update Applications",
-    "roles:add_rule": "Add Rule Roles",
     "roles:create": "Create Roles",
     "roles:destroy": "Destroy Roles",
     "roles:list": "List Roles",
