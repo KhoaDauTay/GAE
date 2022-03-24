@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {Application} from "../state/application.model";
 import {ApplicationsService} from "../state/applications.service";
 import {ApplicationsQuery} from "../state/applications.query";
-import {ApplicationsStore} from "../state/applications.store";
 
 @Component({
   selector: "app-card-application",

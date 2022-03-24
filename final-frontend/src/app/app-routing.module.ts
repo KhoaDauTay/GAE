@@ -19,6 +19,8 @@ import {ApplicationsComponent} from "./applications/applications.component";
 import {ApplicationSettingComponent} from "./applications/application-setting/application-setting.component";
 import {ApplicationCreateComponent} from "./applications/application-create/application-create.component";
 import {UserDetailComponent} from "./authentication/user-detail/user-detail.component";
+import {RolesComponent} from "./roles/roles.component";
+import {RoleSettingComponent} from "./roles/role-setting/role-setting.component";
 
 const routes: Routes = [
   // admin views
@@ -34,6 +36,8 @@ const routes: Routes = [
       { path: "applications", component: ApplicationsComponent },
       { path: "applications/create", component: ApplicationCreateComponent },
       { path: "applications/:id", component: ApplicationSettingComponent },
+      { path: "roles/:id", component: RoleSettingComponent},
+      { path: "roles", component: RolesComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
