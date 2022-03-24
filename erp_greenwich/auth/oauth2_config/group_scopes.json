@@ -20,7 +20,7 @@
             {
                 "description": "Destroy Roles",
                 "scope": "roles:destroy"
-            },
+            }
         ],
         "label": "Roles"
     },
