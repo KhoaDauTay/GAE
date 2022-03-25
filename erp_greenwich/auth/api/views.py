@@ -37,4 +37,5 @@ class RoleViewSet(BaseViewSet):
     serializer_class = RoleSerializer
     serializer_map = {
         "update": RuleUpdateSerializer,
+        "create": RuleUpdateSerializer,
     }
