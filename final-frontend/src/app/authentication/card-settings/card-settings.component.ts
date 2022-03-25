@@ -42,6 +42,9 @@ export class CardSettingsComponent implements OnInit {
   defaultRole: string;
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get("id");
+    if(!this.userId){
+      this.userId = this.user.id
+    }
     this.userService.get(this.userId).subscribe(
       () => {
         this.user = this.userQuery.getEntity(this.userId)

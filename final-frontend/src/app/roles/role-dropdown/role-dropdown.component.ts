@@ -46,7 +46,7 @@ export class RoleDropdownComponent implements AfterViewInit {
   deleteRole(event) {
     this.roleService.delete(this.roleId).subscribe(
       (() => {
-        this.alertService.info(`Delete a row successfully!!!`, this.options);
+        this.alertService.success(`Delete a row successfully!!!`, this.options);
         this.toggleModal(event);
       })
     )

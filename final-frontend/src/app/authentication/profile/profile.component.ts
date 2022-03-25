@@ -23,4 +23,9 @@ export class ProfileComponent implements OnInit {
       this.user = this.userQuery.getEntity(this.authQuery.userId());
     }
   }
+
+  updateUser($event: User) {
+    this.user = $event
+    localStorage.setItem(environment.USER_STORAGE_KEY, JSON.stringify(this.user))
+  }
 }
