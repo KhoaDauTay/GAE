@@ -7,6 +7,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {NgSelectModule} from "@ng-select/ng-select";
 import { RoleSettingComponent } from "./role-setting/role-setting.component";
+import { RoleCreateComponent } from "./role-create/role-create.component";
 
 
 
@@ -15,7 +16,8 @@ import { RoleSettingComponent } from "./role-setting/role-setting.component";
     RolesComponent,
     CardRoleComponent,
     RoleDropdownComponent,
-    RoleSettingComponent
+    RoleSettingComponent,
+    RoleCreateComponent
   ],
   imports: [
     FormsModule,

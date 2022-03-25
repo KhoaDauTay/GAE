@@ -88,6 +88,18 @@ class RuleUpdateSerializer(serializers.ModelSerializer):
         model = Role
         fields = ["name", "description", "scopes"]
 
+    def create(self, validated_data):
+        scopes = validated_data.pop("scopes")
+        role = Role.objects.create(**validated_data)
+        with transaction.atomic():
+            for rule in scopes:
+                CasbinRule.objects.create(
+                    ptype="g",
+                    v0=f"{role.name.lower()}",
+                    v1=f"{rule}",
+                )
+        return role
+
     def update(self, instance: Role, validated_data):
         # Update user
         instance.name = validated_data.get("name")

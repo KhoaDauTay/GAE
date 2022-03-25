@@ -76,7 +76,7 @@ export class RoleSettingComponent implements OnInit {
         this.alertService.success(`${this.roleForm.get("name").value.toString()} update successfully!!!`, this.options);
       },
       error => {
-        this.alertService.error(`Name: ${error?.name[0]}`, this.options);
+        this.alertService.error(`Name: ${error?.error?.name[0]}`, this.options);
       }
     )
   }

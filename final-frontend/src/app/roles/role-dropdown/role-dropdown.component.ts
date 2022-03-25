@@ -2,16 +2,22 @@ import {AfterViewInit, Component, ElementRef, Input, ViewChild} from "@angular/c
 import {createPopper} from "@popperjs/core";
 import {AlertService} from "../../alert";
 import {Router} from "@angular/router";
+import {RolesService} from "../state/roles.service";
 
 @Component({
   selector: "app-role-dropdown",
   templateUrl: "./role-dropdown.component.html",
 })
 export class RoleDropdownComponent implements AfterViewInit {
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
   @Input() roleId: number | string;
   showModal = false;
   constructor(
     public alertService: AlertService,
+    private roleService: RolesService,
     private router: Router,
   ) { }
   dropdownPopoverShow = false;
@@ -37,10 +43,14 @@ export class RoleDropdownComponent implements AfterViewInit {
     this.toggleDropdown(event);
   }
 
-  deleteRole() {
-
+  deleteRole(event) {
+    this.roleService.delete(this.roleId).subscribe(
+      (() => {
+        this.alertService.info(`Delete a row successfully!!!`, this.options);
+        this.toggleModal(event);
+      })
+    )
   }
-
   navigateRole() {
     this.router.navigate(["/admin/roles", this.roleId]);
   }
