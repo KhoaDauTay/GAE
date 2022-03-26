@@ -125,7 +125,7 @@ entryPoints:
     address: ":8080"
 
   kong:
-    address: "8000"
+    address: ":8000"
 
 certificatesResolvers:
   letsencrypt:

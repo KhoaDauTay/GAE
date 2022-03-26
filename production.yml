@@ -108,8 +108,8 @@ services:
      retries: 3
    volumes:
      - ./compose/kong/declarative:/usr/local/kong/declarative
-   ports:
-     - "8000:8000"
-     - "8443:8443"
+#   ports:
+#     - "8000:8000"
+#     - "8443:8443"
    depends_on:
      - django
