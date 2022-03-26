@@ -159,6 +159,14 @@ http:
       tls:
         certResolver: letsencrypt
 
+    kong-secure-router:
+      rule: "Host(`gae-gw.systems`)"
+      entryPoints:
+        - web-secure
+      service: kong
+      tls:
+        certResolver: letsencrypt
+
   middlewares:
     auth:
       basicAuth:
@@ -173,6 +181,11 @@ http:
       loadBalancer:
         servers:
           - url: http://django:5000
+
+    kong:
+      loadBalancer:
+        servers:
+          - url: http://kong:8000
 
     flower:
       loadBalancer:
