@@ -55,7 +55,7 @@ services:
   host: django
   port: 5000
   connect_timeout: 60000
-  protocol: https
+  protocol: http
   read_timeout: 60000
   retries: 5
   write_timeout: 60000
@@ -70,7 +70,7 @@ services:
       paths:
         - /api
       protocols:
-      - https
+      - http
       regex_priority: 0
       strip_path: false
       preserve_host: false
@@ -83,7 +83,7 @@ services:
       paths:
         - /auth
       protocols:
-        - https
+        - http
       regex_priority: 0
       strip_path: false
       preserve_host: false

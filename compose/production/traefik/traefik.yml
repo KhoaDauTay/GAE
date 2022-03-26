@@ -25,7 +25,7 @@ entryPoints:
     address: ":8080"
 
   kong:
-    address: ":8443"
+    address: ":8000"
 
 certificatesResolvers:
   letsencrypt:
@@ -63,7 +63,7 @@ http:
         certResolver: letsencrypt
 
     kong-secure-router:
-      rule: "Host(`gae-gw.systems`)"
+      rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
       entryPoints:
         - kong
       service: kong
@@ -88,7 +88,7 @@ http:
     kong:
       loadBalancer:
         servers:
-          - url: http://kong:8443
+          - url: http://kong:8000
 
     flower:
       loadBalancer:
