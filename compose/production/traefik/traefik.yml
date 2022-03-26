@@ -165,7 +165,7 @@ http:
     kong-secure-router:
       rule: "Host(`gae-gw.systems`) && PathPrefix(`/kong`))"
       entryPoints:
-        - web-secure
+        - kong
       service: kong
       tls:
         certResolver: letsencrypt
