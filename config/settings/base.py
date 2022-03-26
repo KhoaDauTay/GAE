@@ -327,7 +327,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 CASBIN_MODEL = os.path.join(APPS_DIR, "auth", "casbin", "role_rbac.conf")
 CASBIN_ADAPTER = "casbin_adapter.adapter.Adapter"
 CASBIN_ADAPTER_ARGS = os.path.join(APPS_DIR, "auth", "casbin", "role_rbac.csv")
-CASBIN_LOG_ENABLED = True
 # Oauth2
 # ------------------------------------------------------------------------------
 OAUTH2_PROVIDER = {
