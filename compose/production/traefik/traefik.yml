@@ -163,7 +163,7 @@ http:
         certResolver: letsencrypt
 
     kong-secure-router:
-      rule: "Host(`gae-gw.systems`) && PathPrefix(`/kong`))"
+      rule: "Host(`gae-gw.systems`) && PathPrefix(`/kong`)"
       entryPoints:
         - kong
       service: kong
