@@ -124,6 +124,9 @@ entryPoints:
   traefik:
     address: ":8080"
 
+  kong:
+    address: "8000"
+
 certificatesResolvers:
   letsencrypt:
     acme:
@@ -160,7 +163,7 @@ http:
         certResolver: letsencrypt
 
     kong-secure-router:
-      rule: "Host(`gae-gw.systems`)"
+      rule: "Host(`gae-gw.systems`) && PathPrefix(`/kong`))"
       entryPoints:
         - web-secure
       service: kong
