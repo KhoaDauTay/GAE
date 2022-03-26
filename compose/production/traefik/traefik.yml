@@ -1,103 +1,3 @@
-#api:
-#  dashboard: true
-#  insecure: true
-#
-#log:
-#  level: ERROR
-#
-#entryPoints:
-#  web:
-#    # http
-#    address: ":80"
-#    http:
-#      # https://docs.traefik.io/routing/entrypoints/#entrypoint
-#      redirections:
-#        entryPoint:
-#          to: web-secure
-#
-#  web-secure:
-#    # https
-#    address: ":443"
-#    http:
-#      tls:
-#        options: default
-#
-#  flower:
-#    address: ":5555"
-#
-#  portainer:
-#    address: ":9443"
-#
-#http:
-#  routers:
-#    web-secure-router:
-#      rule: "Host(`gae-gw.systems`) || Host(`www.gae-gw.systems`)"
-#      entryPoints:
-#        - web-secure
-#      middlewares:
-#        - csrf
-#      service: django
-#
-#
-#    flower-secure-router:
-#      rule: "Host(`gae-gw.systems`)"
-#      entryPoints:
-#        - flower
-#      service: flower
-#
-#
-#    portainer-secure-router:
-#      rule: "Host(`gae-gw.systems`)"
-#      entryPoints:
-#        - portainer
-#      service: portainer
-#
-#  middlewares:
-#    csrf:
-#      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
-#      # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
-#      headers:
-#        accessControlAllowOriginList: ["*"]
-#        hostsProxyHeaders: ["X-CSRFToken"]
-#
-#  services:
-#    django:
-#      loadBalancer:
-#        servers:
-#          - url: http://django:5000
-#
-#    flower:
-#      loadBalancer:
-#        servers:
-#          - url: http://flower:5555
-#
-#    portainer:
-#      loadBalancer:
-#        servers:
-#          - url: http://portainer:9443
-#
-#tls:
-#  certificates:
-#    - certFile: "/etc/traefik/acme/gae-gw-systems.crt"
-#      keyFile: "/etc/traefik/acme/gae-gw-systems.key"
-#      stores:
-#        - default
-#  options:
-#    default:
-#      minVersion: VersionTLS12
-#      maxVersion: VersionTLS13
-#  stores:
-#      default:
-#        defaultCertificate:
-#          certFile: "/etc/traefik/acme/gae-gw-systems.crt"
-#          keyFile: "/etc/traefik/acme/gae-gw-systems.key"
-#
-#providers:
-#  # https://docs.traefik.io/master/providers/file/
-#  file:
-#    filename: /etc/traefik/traefik.yml
-#    watch: true
-
 api:
   dashboard: true
   debug: true
@@ -125,7 +25,7 @@ entryPoints:
     address: ":8080"
 
   kong:
-    address: ":8000"
+    address: ":8443"
 
 certificatesResolvers:
   letsencrypt:
@@ -188,7 +88,7 @@ http:
     kong:
       loadBalancer:
         servers:
-          - url: http://kong:8000
+          - url: http://kong:8443
 
     flower:
       loadBalancer:

@@ -52,11 +52,10 @@ plugins:
 # Config Services và Routes
 services:
 - name: api-service
-#  host: http://django:5000
-#  port: 5000
-  url: http://django:5000
+  host: django
+  port: 5000
   connect_timeout: 60000
-  protocol: http
+  protocol: https
   read_timeout: 60000
   retries: 5
   write_timeout: 60000
@@ -71,7 +70,7 @@ services:
       paths:
         - /api
       protocols:
-      - http
+      - https
       regex_priority: 0
       strip_path: false
       preserve_host: false
@@ -81,11 +80,10 @@ services:
         - POST
         - PUT
         - DELETE
-        - PATCH
       paths:
         - /auth
       protocols:
-        - http
+        - https
       regex_priority: 0
       strip_path: false
       preserve_host: false
