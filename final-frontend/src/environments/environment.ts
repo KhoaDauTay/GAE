@@ -4,7 +4,8 @@
 
 export const environment = {
   USER_STORAGE_KEY: "user",
-  apiUrl: "https://gae-gw.systems/api/",
+  apiUrl: "https://gae-gw.systems:8000/api/",
+  authUrl: "https://gae-gw.systems:8000/auth/",
   production: false,
 };
 

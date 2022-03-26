@@ -78,7 +78,7 @@ export class TokenService {
     const body = {
       refresh: `${refreshToken}`
     }
-    return this.http.post<Tokens | null>( environment.apiUrl + "token/refresh/", body, httpOptions)
+    return this.http.post<Tokens | null>( environment.authUrl + "token/refresh/", body, httpOptions)
       .pipe(
         catchError(
           () => of(null)

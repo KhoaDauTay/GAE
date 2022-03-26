@@ -69,7 +69,7 @@ import {UsersComponent} from "./views/admin/users/users.component";
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule
   ],
-  providers: [{provide: NG_ENTITY_SERVICE_CONFIG, useValue: {baseUrl: "https://gae-gw.systems/api"}}],
+  providers: [{provide: NG_ENTITY_SERVICE_CONFIG, useValue: {baseUrl: "https://gae-gw.systems:8000/api"}}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

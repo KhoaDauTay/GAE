@@ -47,7 +47,7 @@ export class ApplicationDropdownComponent implements AfterViewInit {
   deleteApplication() {
     this.applicationService.delete(this.applicationId).subscribe(
       (() => {
-        this.alertService.info(`Delete a row successfully!!!`, this.options);
+        this.alertService.success(`Delete a row successfully!!!`, this.options);
         this.toggleModal();
       })
     )

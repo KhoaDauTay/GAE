@@ -21,7 +21,7 @@ export class AuthenticationService {
   login(credentials: Credentials): Observable<Tokens> {
     this.authenticationStore.setLoading(true);
 
-    return this.http.post<Tokens>(environment.apiUrl + "token/", credentials)
+    return this.http.post<Tokens>(environment.authUrl + "token/", credentials)
       .pipe(
         setLoading(this.authenticationStore),
         catchError(
