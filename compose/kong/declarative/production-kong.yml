@@ -16,7 +16,7 @@ jwt_secrets:
 plugins:
 - name: jwt
   enabled: yes
-  service: api-service
+  route: api-route
   config:
     secret_is_base64: false
     header_names: ["Authorization"]
@@ -72,6 +72,20 @@ services:
         - /api
       protocols:
       - http
+      regex_priority: 0
+      strip_path: false
+      preserve_host: false
+    - name: api-auth
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      paths:
+        - /auth
+      protocols:
+        - http
       regex_priority: 0
       strip_path: false
       preserve_host: false

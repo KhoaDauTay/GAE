@@ -42,12 +42,12 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path(
-        "api/swagger.json",
+        "swagger.json",
         schema_view.without_ui(cache_timeout=0),
         name="enduser_schema-json",
     ),
     path(
-        "api/swagger/",
+        "swagger/",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="enduser-schema-swagger-ui",
     ),
@@ -61,8 +61,8 @@ urlpatterns += [
     # API base url
     # Oauth token
     path("oauth/", include("oauth2_provider.urls", namespace="oauth2_provider")),
-    path("api/token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("auth/token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/", include("config.api_router")),
 ]
 
