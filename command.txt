@@ -7,3 +7,4 @@ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 docker-compose -f local.yml run django pytest
 applications:create applications:destroy applications:list applications:retrieve applications:update users:create users:destroy users:list users:me users:retrieve users:update
 openssl x509 -req -in gae-gw.systems.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out gae-gw.systems.pem -days 1825 -sha256 -extfile gae-gw.systems.ext
+docker-compose -f production.yml run --rm django python manage.py migrate

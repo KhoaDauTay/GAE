@@ -14,7 +14,7 @@ LOG = logging.getLogger(__name__)
     throws=(LogRequest.DoesNotExist,),
     name="Count request",
     resource_type="User",
-    autoretry_for=(LogRequest.DoesNotExist,),
+    autoretry_for=(LogRequest.DoesNotExist, LogUri.DoesNotExist),
     retry_backoff=30,
 )
 def count_request(path: str):
@@ -24,6 +24,7 @@ def count_request(path: str):
     if path.startswith("/api/"):
         obj, created = LogUri.objects.get_or_create(uri=path)
         if created:
+            LOG.info(f"Created object uri: {path}")
             obj = LogUri.objects.get(uri=path)
             if hasattr(obj, month):
                 log_month = getattr(obj, month)
@@ -33,12 +34,14 @@ def count_request(path: str):
             else:
                 LOG.info("No month for count of uri")
         if hasattr(obj, month):
+            LOG.info(f"Find object uri: {path} with month: {month}")
             log_month = getattr(obj, month)
             log_month += 1
             setattr(obj, month, log_month)
             obj.save(update_fields=[f"{month}"])
+            LOG.info(f"Save object uri: {path} with month: {month}")
         else:
-            LOG.info("No month for count of uri")
+            LOG.error("No month for count of uri")
 
     log = LogRequest.objects.get(year=year)
     if hasattr(log, month):
@@ -47,4 +50,4 @@ def count_request(path: str):
         setattr(log, month, log_month)
         log.save(update_fields=[f"{month}"])
     else:
-        LOG.info("No month for count")
+        LOG.error("No month for count")
