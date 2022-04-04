@@ -5,7 +5,7 @@ from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from ...users.models import Role
-from ..models import Application
+from ..models import Application, LogRequest, LogUri
 
 
 class ApplicationSerializer(serializers.ModelSerializer):
@@ -127,3 +127,15 @@ class RuleUpdateSerializer(serializers.ModelSerializer):
                     v1=f"{rule}",
                 )
         return instance
+
+
+class LogUriSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LogUri
+        fields = ["uri", "sum_request"]
+
+
+class LogRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LogRequest
+        fields = "__all__"
