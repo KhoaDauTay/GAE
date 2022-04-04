@@ -21,6 +21,7 @@ def count_request(path: str):
     year = datetime.datetime.now().year
     mydate = datetime.datetime.now()
     month = str(mydate.strftime("%B")).lower()
+    LOG.info(f"Path request: {path}")
     if path.startswith("/api/"):
         obj, created = LogUri.objects.get_or_create(uri=path)
         if created:
