@@ -1,4 +1,8 @@
+import logging
+
 from ..tasks import count_request
+
+LOG = logging.getLogger(__name__)
 
 
 class CountMiddleware:
@@ -7,9 +11,12 @@ class CountMiddleware:
 
     def __call__(self, request):
         if request.user.is_anonymous:
+            LOG.info("Request by anonymous")
             response = self.get_response(request)
             return response
         response = self.get_response(request)
         path = request.path
+        LOG.info("Request go to count")
         count_request.delay(path=path)
+        LOG.info("Complete to count request")
         return response
