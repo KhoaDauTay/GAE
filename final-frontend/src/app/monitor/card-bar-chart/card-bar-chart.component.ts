@@ -1,16 +1,20 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import {Component, OnInit, AfterViewInit, Input} from "@angular/core";
 import Chart from "chart.js";
+import {Request} from "../state/request.model";
+import {Uris} from "../state/uris.model";
 
 @Component({
   selector: "app-card-bar-chart",
   templateUrl: "./card-bar-chart.component.html",
 })
 export class CardBarChartComponent implements OnInit, AfterViewInit {
-  constructor() {}
-
-  ngOnInit() {}
+  constructor(
+  ) {}
+  @Input() data: Request[];
+  ngOnInit() {
+  }
   ngAfterViewInit() {
-    let config = {
+    const config = {
       type: "bar",
       data: {
         labels: [
@@ -24,19 +28,35 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
         ],
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: this.data[0].year,
             backgroundColor: "#ed64a6",
             borderColor: "#ed64a6",
-            data: [30, 78, 56, 34, 100, 45, 13],
+            data: [
+              this.data[0].january,
+              this.data[0].february,
+              this.data[0].march,
+              this.data[0].april,
+              this.data[0].may,
+              this.data[0].june,
+              this.data[0].july,
+            ],
             fill: false,
             barThickness: 8,
           },
           {
-            label: new Date().getFullYear() - 1,
+            label: this.data[1].year,
             fill: false,
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
-            data: [27, 68, 86, 74, 10, 4, 87],
+            data: [
+              this.data[1].january,
+              this.data[1].february,
+              this.data[1].march,
+              this.data[1].april,
+              this.data[1].may,
+              this.data[1].june,
+              this.data[1].july,
+            ],
             barThickness: 8,
           },
         ],

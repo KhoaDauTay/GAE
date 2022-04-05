@@ -18,9 +18,6 @@ import { IndexComponent } from "./views/index/index.component";
 // components for views and layouts
 
 import { AdminNavbarComponent } from "./components/navbars/admin-navbar/admin-navbar.component";
-import { CardBarChartComponent } from "./components/cards/card-bar-chart/card-bar-chart.component";
-import { CardLineChartComponent } from "./components/cards/card-line-chart/card-line-chart.component";
-import { CardPageVisitsComponent } from "./components/cards/card-page-visits/card-page-visits.component";
 import { CardSocialTrafficComponent } from "./components/cards/card-social-traffic/card-social-traffic.component";
 import { CardStatsComponent } from "./components/cards/card-stats/card-stats.component";
 import { FooterAdminComponent } from "./components/footers/footer-admin/footer-admin.component";
@@ -38,18 +35,16 @@ import {HttpClientModule} from "@angular/common/http";
 import {ApplicationModule} from "./applications/application.module";
 import {AlertModule} from "./alert";
 import {UsersComponent} from "./views/admin/users/users.component";
+import { MonitorModule } from "./monitor/monitor.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    CardBarChartComponent,
-    CardLineChartComponent,
     NotificationDropdownComponent,
     SidebarComponent,
     FooterComponent,
     FooterAdminComponent,
-    CardPageVisitsComponent,
     CardSocialTrafficComponent,
     CardStatsComponent,
     HeaderStatsComponent,
@@ -64,6 +59,7 @@ import {UsersComponent} from "./views/admin/users/users.component";
     HttpClientModule,
     AuthenticationModule,
     ApplicationModule,
+    MonitorModule,
     AlertModule,
     AppRoutingModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),

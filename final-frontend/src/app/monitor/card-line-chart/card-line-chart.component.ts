@@ -1,16 +1,18 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import {Component, OnInit, AfterViewInit, Input} from "@angular/core";
 import Chart from "chart.js";
+import {Request} from "../state/request.model";
 
 @Component({
   selector: "app-card-line-chart",
   templateUrl: "./card-line-chart.component.html",
 })
-export class CardLineChartComponent implements OnInit {
+export class CardLineChartComponent implements OnInit, AfterViewInit {
   constructor() {}
-
-  ngOnInit() {}
+  @Input() data: Request[];
+  ngOnInit() {
+  }
   ngAfterViewInit() {
-    var config = {
+    const config = {
       type: "line",
       data: {
         labels: [
@@ -24,18 +26,34 @@ export class CardLineChartComponent implements OnInit {
         ],
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: this.data[0].year,
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
+            data: [
+              this.data[0].january,
+              this.data[0].february,
+              this.data[0].march,
+              this.data[0].april,
+              this.data[0].may,
+              this.data[0].june,
+              this.data[0].july,
+            ],
             fill: false,
           },
           {
-            label: new Date().getFullYear() - 1,
+            label: this.data[1].year,
             fill: false,
             backgroundColor: "#fff",
             borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
+            data: [
+              this.data[1].january,
+              this.data[1].february,
+              this.data[1].march,
+              this.data[1].april,
+              this.data[1].may,
+              this.data[1].june,
+              this.data[1].july,
+            ],
           },
         ],
       },
