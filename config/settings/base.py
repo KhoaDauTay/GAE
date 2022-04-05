@@ -153,6 +153,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "erp_greenwich.auth.casbin.jwt_authentication.JwtAuthenticationMiddleware",
     "erp_greenwich.auth.casbin.count_request.CountMiddleware",
 ]
 

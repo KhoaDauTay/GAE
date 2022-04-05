@@ -14,9 +14,9 @@ class CountMiddleware:
             LOG.info("Request by anonymous")
             response = self.get_response(request)
             return response
-        response = self.get_response(request)
         path = request.path
         LOG.info("Request go to count")
         count_request.delay(path=path)
         LOG.info("Complete to count request")
+        response = self.get_response(request)
         return response
