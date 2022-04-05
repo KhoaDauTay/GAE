@@ -6,6 +6,10 @@ class JwtAuthenticationMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        request.user = authentication.JWTAuthentication().authenticate(request)[0]
+        path = request.path
+        if request.user.is_anonymous and path.startswith("/api/"):
+            request.user = authentication.JWTAuthentication().authenticate(request)[0]
+            response = self.get_response(request)
+            return response
         response = self.get_response(request)
         return response
