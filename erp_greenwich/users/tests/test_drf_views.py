@@ -27,7 +27,18 @@ class TestUserViewSet:
         response = view.me(request)
 
         assert response.data == {
-            "id": user.id,
-            "name": user.name,
+            "avatar": None,
+            "client": {
+                "about_me": "",
+                "address": "",
+                "city": "",
+                "country": "",
+                "postal_code": "",
+            },
             "email": user.email,
+            "first_name": "",
+            "id": user.id,
+            "last_name": "",
+            "name": user.name,
+            "role": "No role",
         }

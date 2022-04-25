@@ -37,7 +37,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_role(obj: User):
-        return obj.role.name
+        try:
+            return obj.role.name
+        except Exception:
+            return "No role"
 
     @staticmethod
     def get_client(obj: User):
