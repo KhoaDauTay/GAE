@@ -138,7 +138,7 @@ typing-extensions==4.0.1
 uritemplate==4.1.1
 urllib3==1.26.7
 uvicorn==0.16.0
-uvloop==0.16.0
+uvloop==0.19.0
 vine==5.0.0
 virtualenv==20.13.0
 watchgod==0.7
