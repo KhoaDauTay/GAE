@@ -1,0 +1,20 @@
+p, admin, *, *
+
+p, applications:create, applications:create, POST
+p, applications:destroy, applications:destroy, DELETE
+p, applications:list, applications:list, GET
+p, applications:retrieve, applications:retrieve, GET
+p, applications:update, applications:update, PUT
+
+p, users:create, users:create, POST
+p, users:destroy, users:destroy, DELETE
+p, users:list, users:list, GET
+p, users:me, users:me, GET
+p, users:retrieve, users:retrieve, GET
+p, users:update, users:update, PUT
+
+g, admin, admin
+
+g, student, users:me
+g, student, users:retrieve
+g, student, users:update

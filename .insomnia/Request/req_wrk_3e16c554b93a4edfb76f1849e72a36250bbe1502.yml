@@ -1,0 +1,45 @@
+_id: req_wrk_3e16c554b93a4edfb76f1849e72a36250bbe1502
+type: Request
+parentId: wrk_3e16c554b93a4edfb76f1849e72a3625
+modified: 1645539049850
+created: 1645533214167
+url: "{{ base_url }}/users/me/"
+name: /users/me/
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: search
+    disabled: true
+    value: string
+    id: pair_a1cdd7613cba46499739abda66b0f0f9
+  - name: ordering
+    disabled: true
+    value: string
+    id: pair_1c1fd587250843228f5160e7df8ceeb3
+  - name: limit
+    disabled: true
+    value: "0"
+    id: pair_ee3e4b3955ba47cab839295618b57746
+  - name: offset
+    disabled: true
+    value: "0"
+    id: pair_bb4b1c73553048d2b0ac32d5e86c6c1e
+headers: []
+authentication:
+  type: oauth2
+  grantType: authorization_code
+  clientId: HhKZuTChG8IGtjigLbv07bMAXOAkBBtAzmxQUEwn
+  clientSecret: vd7wF5Ve956BSjwmrYgY2WPcEzFrgqodr4oEvXzwO4kIhKnSMzOAF6A5nNiyLXfM5KtG0Wa5qSlcQiGgiUVjw64d8lKneHO3QD8H0hz8VbNCEUpMK3OkwVEVjkrCJm5k
+  authorizationUrl: http://0.0.0.0:8080/oauth/authorize/
+  accessTokenUrl: http://0.0.0.0:8080/oauth/token/
+  redirectUrl: https://facbook.com/
+  scope: read write
+metaSortKey: -1645533270511
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

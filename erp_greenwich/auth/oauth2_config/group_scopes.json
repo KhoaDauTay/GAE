@@ -1,0 +1,89 @@
+[
+    {
+        "children": [
+            {
+                "description": "Create Roles",
+                "scope": "roles:create"
+            },
+            {
+                "description": "List Roles",
+                "scope": "roles:list"
+            },
+            {
+                "description": "Retrieve Roles",
+                "scope": "roles:retrieve"
+            },
+            {
+                "description": "Update Roles",
+                "scope": "roles:update"
+            },
+            {
+                "description": "Destroy Roles",
+                "scope": "roles:destroy"
+            }
+        ],
+        "label": "Roles"
+    },
+    {
+        "children": [
+            {
+                "description": "List Users",
+                "scope": "users:list"
+            },
+            {
+                "description": "Me Users",
+                "scope": "users:me"
+            },
+            {
+                "description": "Create Users",
+                "scope": "users:create"
+            },
+            {
+                "description": "Retrieve Users",
+                "scope": "users:retrieve"
+            },
+            {
+                "description": "Invite Users",
+                "scope": "users:invite"
+            },
+            {
+                "description": "Update Users",
+                "scope": "users:update"
+            },
+            {
+                "description": "Destroy Users",
+                "scope": "users:destroy"
+            }
+        ],
+        "label": "Users"
+    },
+    {
+        "children": [
+            {
+                "description": "Update Applications",
+                "scope": "applications:update"
+            },
+            {
+                "description": "List Applications",
+                "scope": "applications:list"
+            },
+            {
+                "description": "Destroy Applications",
+                "scope": "applications:destroy"
+            },
+            {
+                "description": "Get Roles Applications",
+                "scope": "applications:get_roles"
+            },
+            {
+                "description": "Retrieve Applications",
+                "scope": "applications:retrieve"
+            },
+            {
+                "description": "Create Applications",
+                "scope": "applications:create"
+            }
+        ],
+        "label": "Applications"
+    }
+]

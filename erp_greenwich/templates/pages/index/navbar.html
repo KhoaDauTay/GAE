@@ -1,0 +1,99 @@
+<nav
+  class="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow"
+>
+  <div
+    class="container px-4 mx-auto flex flex-wrap items-center justify-between"
+  >
+    <div
+      class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
+    >
+      <a
+        class="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+        href="{% url 'home' %}"
+      >GAE</a
+      >
+      <button
+        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        type="button"
+        onclick="toggleNavbar('example-collapse-navbar')"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div
+      class="lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none hidden"
+      id="example-collapse-navbar"
+    >
+      <ul class="flex flex-col lg:flex-row list-none mr-auto">
+        <li class="flex items-center">
+          <a
+            class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+            href="{% url 'about' %}"
+          ><i
+            class="text-blueGray-400 far fa-file-alt text-lg leading-lg mr-2"
+          ></i>
+            About</a
+          >
+        </li>
+      </ul>
+
+      <ul
+        class="flex flex-col lg:flex-row list-none lg:ml-auto items-center"
+      >
+
+
+        {% if request.user.is_authenticated %}
+          <li class="inline-block relative">
+            <a
+              class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+              href="#"
+              onclick="openDropdown(event,'demo-pages-dropdown')"
+            >
+              Menu
+            </a>
+
+          </li>
+          <div
+            class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48 navbar-popper"
+            id="demo-pages-dropdown"
+          >
+            <a
+              href="{% url 'users:detail' request.user.username %}"
+              class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            >
+              Profile
+            </a>
+                    {% if request.user.is_superuser %}
+          <a
+              href="{% url 'admin:index'%}"
+              class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            >
+              Admin site
+            </a>
+                      {% endif %}
+          </div>
+          <li class="flex items-center">
+
+            <form method="post" action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+              {% endif %}
+              <button type="submit" class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onclick="toggleModal('small-modal-id')">
+              Logout
+            </button>
+            </form>
+{#            <button#}
+{#              class="text-white bg-pink-500 active:bg-pink-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"#}
+{#              type="button"#}
+{#            >#}
+{#              <a id="log-in-link" class="nav-link" href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i>#}
+{#                Logout</a>#}
+{##}
+{#            </button>#}
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}
+
+{% block content %}
+
+  {% include 'pages/index/navbar.html' %}
+
+
+  <section
+  class="header relative pt-16 items-center flex h-screen max-h-860-px"
+>
+    {% block inner %}{% endblock %}
+  </section>
+  {% include 'pages/index/footer.html' %}
+
+{% endblock %}

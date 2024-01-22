@@ -1,0 +1,20 @@
+{
+    "applications:create": "Create Applications",
+    "applications:destroy": "Destroy Applications",
+    "applications:get_roles": "Get Roles Applications",
+    "applications:list": "List Applications",
+    "applications:retrieve": "Retrieve Applications",
+    "applications:update": "Update Applications",
+    "roles:create": "Create Roles",
+    "roles:destroy": "Destroy Roles",
+    "roles:list": "List Roles",
+    "roles:retrieve": "Retrieve Roles",
+    "roles:update": "Update Roles",
+    "users:create": "Create Users",
+    "users:destroy": "Destroy Users",
+    "users:invite": "Invite Users",
+    "users:list": "List Users",
+    "users:me": "See my information",
+    "users:retrieve": "Retrieve Users",
+    "users:update": "Update Users"
+}

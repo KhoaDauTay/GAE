@@ -1,0 +1,38 @@
+<a
+  class="text-blueGray-500 block"
+  (click)="toggleDropdown($event)"
+  #btnDropdownRef
+>
+  <div class="items-center flex">
+    <span
+      class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"
+    >
+      <img
+        *ngIf="avatar"
+        alt="..."
+        class="w-full rounded-full align-middle border-none shadow-lg"
+        src="{{avatar}}"
+      />
+    </span>
+  </div>
+</a>
+<div class="min-w-48 z-50" #popoverDropdownRef>
+  <div
+    class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
+    [ngClass]="dropdownPopoverShow ? 'block' : 'hidden'"
+  >
+    <a
+      [routerLink]="['/admin/profile']"
+      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+    >
+      Profile
+    </a>
+    <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
+    <button
+      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+</div>

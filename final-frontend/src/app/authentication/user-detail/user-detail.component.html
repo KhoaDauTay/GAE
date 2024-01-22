@@ -1,0 +1,8 @@
+<div class="flex flex-wrap" *ngIf="user">
+  <div class="w-full lg:w-8/12 px-4">
+    <app-card-settings (userChange)="changeValue($event)" [user]="user"></app-card-settings>
+  </div>
+  <div class="w-full lg:w-4/12 px-4">
+    <app-card-profile [user]="user"></app-card-profile>
+  </div>
+</div>

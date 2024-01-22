@@ -1,0 +1,754 @@
+_id: spc_7a37428979fa43be98e2893435ce28bf
+type: ApiSpec
+parentId: wrk_3e16c554b93a4edfb76f1849e72a3625
+modified: 1645538875800
+created: 1645521806283
+fileName: enterise-project.yaml
+contents: >-
+  {
+    "openapi": "3.0.1",
+    "info": {
+      "title": "GAE EndUser API",
+      "description": "Greenwich Application Ecosystem end user api documentation",
+      "termsOfService": "https://www.google.com/policies/terms/",
+      "contact": {
+        "email": "cuonglieu3256@gmail.com"
+      },
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://0.0.0.0:8080/api"
+      }
+    ],
+    "security": [
+      {
+        "GAE-Swagger": []
+      }
+    ],
+    "paths": {
+      "/applications/": {
+        "get": {
+          "tags": [
+            "applications"
+          ],
+          "operationId": "applications_list",
+          "parameters": [
+            {
+              "name": "search",
+              "in": "query",
+              "description": "A search term.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "ordering",
+              "in": "query",
+              "description": "Which field to use when ordering the results.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Number of results to return per page.",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "The initial index from which to return the results.",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "required": [
+                      "count",
+                      "results"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "type": "integer"
+                      },
+                      "next": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                      },
+                      "previous": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Application"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "applications"
+          ],
+          "description": "Create new object for model. Define Serializer and register at serializer_map\nformat {\"create\": SomeThingSerializer}\nThis function will run `.create` function on Serializer\n:param request:\n:param args:\n:param kwargs:\n:return:",
+          "operationId": "applications_create",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "data"
+        }
+      },
+      "/applications/{id}/": {
+        "get": {
+          "tags": [
+            "applications"
+          ],
+          "operationId": "applications_read",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "applications"
+          ],
+          "description": "Create new object for model. Define Serializer and register at serializer_map\nformat {\"update\": SomeThingSerializer}\nThis function will run `.update` function on Serializer\n\n:param request:\n:param args:\n:param kwargs:\n:return:",
+          "operationId": "applications_update",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "data"
+        },
+        "delete": {
+          "tags": [
+            "applications"
+          ],
+          "operationId": "applications_delete",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "",
+              "content": {}
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "applications"
+          ],
+          "operationId": "applications_partial_update",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "data"
+        }
+      },
+      "/users/": {
+        "get": {
+          "tags": [
+            "users"
+          ],
+          "operationId": "users_list",
+          "parameters": [
+            {
+              "name": "search",
+              "in": "query",
+              "description": "A search term.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "ordering",
+              "in": "query",
+              "description": "Which field to use when ordering the results.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Number of results to return per page.",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "The initial index from which to return the results.",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "required": [
+                      "count",
+                      "results"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "type": "integer"
+                      },
+                      "next": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                      },
+                      "previous": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "users"
+          ],
+          "description": "Create new object for model. Define Serializer and register at serializer_map\nformat {\"create\": SomeThingSerializer}\nThis function will run `.create` function on Serializer\n:param request:\n:param args:\n:param kwargs:\n:return:",
+          "operationId": "users_create",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreate"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UserCreate"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "data"
+        }
+      },
+      "/users/me/": {
+        "get": {
+          "tags": [
+            "users"
+          ],
+          "operationId": "users_me",
+          "parameters": [
+            {
+              "name": "search",
+              "in": "query",
+              "description": "A search term.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "ordering",
+              "in": "query",
+              "description": "Which field to use when ordering the results.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Number of results to return per page.",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "The initial index from which to return the results.",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "required": [
+                      "count",
+                      "results"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "type": "integer"
+                      },
+                      "next": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                      },
+                      "previous": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users/{username}/": {
+        "get": {
+          "tags": [
+            "users"
+          ],
+          "operationId": "users_read",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "users"
+          ],
+          "description": "Create new object for model. Define Serializer and register at serializer_map\nformat {\"update\": SomeThingSerializer}\nThis function will run `.update` function on Serializer\n\n:param request:\n:param args:\n:param kwargs:\n:return:",
+          "operationId": "users_update",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "data"
+        },
+        "delete": {
+          "tags": [
+            "users"
+          ],
+          "operationId": "users_delete",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "",
+              "content": {}
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "users"
+          ],
+          "operationId": "users_partial_update",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "data"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Application": {
+          "required": [
+            "authorization_grant_type",
+            "client_type"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "integer",
+              "readOnly": true
+            },
+            "client_id": {
+              "title": "Client id",
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            },
+            "redirect_uris": {
+              "title": "Redirect uris",
+              "type": "string",
+              "description": "Allowed URIs list, space separated"
+            },
+            "client_type": {
+              "title": "Client type",
+              "type": "string",
+              "enum": [
+                "confidential",
+                "public"
+              ]
+            },
+            "authorization_grant_type": {
+              "title": "Authorization grant type",
+              "type": "string",
+              "enum": [
+                "authorization-code",
+                "implicit",
+                "password",
+                "client-credentials",
+                "openid-hybrid"
+              ]
+            },
+            "client_secret": {
+              "title": "Client secret",
+              "maxLength": 255,
+              "type": "string"
+            },
+            "name": {
+              "title": "Name",
+              "maxLength": 255,
+              "type": "string"
+            },
+            "skip_authorization": {
+              "title": "Skip authorization",
+              "type": "boolean"
+            },
+            "created": {
+              "title": "Created",
+              "type": "string",
+              "format": "date-time",
+              "readOnly": true
+            },
+            "updated": {
+              "title": "Updated",
+              "type": "string",
+              "format": "date-time",
+              "readOnly": true
+            },
+            "algorithm": {
+              "title": "Algorithm",
+              "type": "string",
+              "enum": [
+                "",
+                "RS256",
+                "HS256"
+              ]
+            },
+            "scopes": {
+              "title": "Scopes",
+              "type": "string",
+              "nullable": true
+            },
+            "user": {
+              "title": "User",
+              "type": "integer",
+              "nullable": true
+            }
+          }
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "ID",
+              "type": "integer",
+              "readOnly": true
+            },
+            "name": {
+              "title": "Name of User",
+              "maxLength": 255,
+              "type": "string"
+            },
+            "email": {
+              "title": "Email address",
+              "maxLength": 254,
+              "type": "string",
+              "format": "email"
+            }
+          }
+        },
+        "UserCreate": {
+          "required": [
+            "confirm_password",
+            "email",
+            "name",
+            "password"
+          ],
+          "type": "object",
+          "properties": {
+            "email": {
+              "title": "Email",
+              "minLength": 1,
+              "type": "string",
+              "format": "email"
+            },
+            "password": {
+              "title": "Password",
+              "maxLength": 32,
+              "minLength": 8,
+              "type": "string"
+            },
+            "confirm_password": {
+              "title": "Confirm password",
+              "maxLength": 32,
+              "minLength": 8,
+              "type": "string"
+            },
+            "name": {
+              "title": "Name",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "GAE-Swagger": {
+          "type": "oauth2",
+          "flows": {
+            "authorizationCode": {
+              "authorizationUrl": "oauth/authorize/",
+              "tokenUrl": "oauth/token/",
+              "scopes": {
+                "read:groups": "read write"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+contentType: yaml

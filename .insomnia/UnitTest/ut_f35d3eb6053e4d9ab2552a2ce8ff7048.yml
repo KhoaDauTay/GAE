@@ -1,0 +1,10 @@
+_id: ut_f35d3eb6053e4d9ab2552a2ce8ff7048
+type: UnitTest
+parentId: uts_199baa2dc45b4c9bb1d00bd4710df76d
+modified: 1645539223257
+created: 1645539210422
+requestId: req_wrk_3e16c554b93a4edfb76f1849e72a362551b8364f
+name: Get list applications
+code: |-
+  const response1 = await insomnia.send();
+  expect(response1.status).to.equal(200);

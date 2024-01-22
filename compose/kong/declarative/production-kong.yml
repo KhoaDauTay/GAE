@@ -1,0 +1,83 @@
+_format_version: "2.1"
+_transform: true
+
+
+# Config Consumers and JWT for consumers
+
+consumers:
+- username: gmm
+
+jwt_secrets:
+- consumer: gmm
+  algorithm: RS256
+  key: GAE
+  rsa_public_key: "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA1MtRnSG0FT5BvJWjrieH\nesissdmUVsxal/p8s+2AiV+TtxI2R6PGnFMMOsz1s3/Xs5cMdYml1voKowHNF0+x\nhMO63vh+VfQOOI4TLAQMAMJgacftWEuuj7PbZfER6hu4xtKhJyMxISKrhEkMhkNb\nr652clLP+elWjiHNnk5J6rzyj7WZmjeQIZafRtWkPhlOxlHJV/8iaIZwZ/igvAhh\nr8Hls0b6E5Y4BA1oCMhelSffUj/aGAQwAagUkRhY6SMJ00oMfk4WAXLLcAtPHMeG\nvRxMHawBddSr4ozNdqtVjNrWfK18r4o8sAc709rtdGdwLUlBgQQTovFc985A4rQ3\nOdVz0O0umT0WygSyOfnQPIea/ixuekYUl4O5uQie8WErh1STEYPZk0I0Rt5/fwYX\n6R5uHIIhU5M3GQXQoy8gnWzDhyeNnkxPT04a6QhdXMOPA+8ORcKtXONpgZMLZBAP\nK8egK6LxfRxLJ5vtnGbzgnZj7J5MiizsZDn3b80R8pltynEkKiPmALuVbuz6iEie\nON8TDCSI5R0VLr1AJXfjDJD7bS6WaIaB31HHfUtEZImD88VzgddqNBLcwy28IUBF\nwnoyjZPwlxQxJaOqBecR7zZrHYRHK0MjV9PHJB3X+m0R7JWpxhjjhdbuiANV3xNg\ngI7Qy8bSZgHl4DE5OdxheWsCAwEAAQ==\n-----END PUBLIC KEY-----\n%"
+
+plugins:
+- name: cors
+  config:
+    origins: ["*"]
+    max_age: 3600
+    preflight_continue: false
+- name: jwt
+  enabled: yes
+  route: api-route
+  config:
+    secret_is_base64: false
+    header_names: ["Authorization"]
+    key_claim_name: iss
+    run_on_preflight: true
+    claims_to_verify:
+      - exp
+
+- name: rate-limiting
+  config:
+    second: 5
+    hour: 10000
+    policy: local
+    fault_tolerant: true
+    hide_client_headers: false
+    redis_ssl: false
+    redis_ssl_verify: false
+
+# Config for Proxy cache request
+- name: proxy-cache
+  config:
+    response_code:
+    - 200
+    request_method:
+    - GET
+    - HEAD
+    content_type:
+    - text/plain
+    - application/json
+    cache_ttl: 300
+    strategy: memory
+
+# Config Services và Routes
+services:
+- name: api-service
+  host: django
+  port: 5000
+  connect_timeout: 60000
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+    - name: api-route
+      paths:
+        - /api
+      protocols:
+      - http
+      regex_priority: 0
+      strip_path: false
+      preserve_host: false
+    - name: api-auth
+      paths:
+        - /auth
+      protocols:
+        - http
+      regex_priority: 0
+      strip_path: false
+      preserve_host: false
